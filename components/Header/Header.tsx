@@ -1,30 +1,14 @@
 import { Text, View, Image, StyleSheet, Animated } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "../../styles/styles";
-import { useEffect, useRef } from "react";
+import { useHeartbeat } from "../../hooks/useHeartbeat";
 
 export default function Header() {
   const formatted = new Date().toLocaleDateString("uk-UA", {
     day: "numeric",
     month: "long",
   });
-  const scale = useRef(new Animated.Value(1)).current;
-  useEffect(() => {
-    Animated.loop(
-      Animated.sequence([
-        Animated.timing(scale, {
-          toValue: 1.2,
-          duration: 600,
-          useNativeDriver: true,
-        }),
-        Animated.timing(scale, {
-          toValue: 1,
-          duration: 600,
-          useNativeDriver: true,
-        }),
-      ])
-    ).start();
-  }, []);
+  const scale = useHeartbeat(1, 1.2, 400);
   return (
     <SafeAreaView>
       <View style={headerStyles.container}>
