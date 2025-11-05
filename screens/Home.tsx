@@ -1,4 +1,4 @@
-import { Keyboard, Pressable, ScrollView, Image } from "react-native";
+import { Keyboard, Pressable, ScrollView } from "react-native";
 import { styles } from "../styles/styles";
 import Pressure from "../components/Pressure/Pressure";
 import Button from "../components/Button/Button";
