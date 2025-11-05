@@ -1,29 +1,42 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#000000',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 16,
-    },
-    textSm: {
-        fontSize: 22,
-        color: '#59CECF',
-    },
-    textLg: {
-        fontSize: 26,
-        color: '#59CECF',
-    },
-    icon: {
-        width: 60,
-        height: 60,
-    },
-    tabIcon: {
-        width: 40,
-        height: 40,
-    }
+  container: {
+    flex: 1,
+    backgroundColor: "#000000",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 16,
+  },
+  textSm: {
+    fontSize: 22,
+    color: "#59CECF",
+  },
+  textLg: {
+    fontSize: 26,
+    color: "#59CECF",
+  },
+  icon: {
+    width: 60,
+    height: 60,
+  },
+  tabIcon: {
+    width: 40,
+    height: 40,
+  },
+  button: {
+    width: 262,
+    height: 89,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#59CECF",
+    borderRadius: 20,
+  },
+  buttonText: {
+    fontSize: 26,
+    fontWeight: "bold",
+    color: "#000000",
+  },
 });
 
 export const headerStyles = StyleSheet.create({
