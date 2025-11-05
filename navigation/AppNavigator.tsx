@@ -11,7 +11,7 @@ const Tab = createBottomTabNavigator();
 
 export default function AppNavigator() {
     return (
-        <NavigationContainer>
+        <NavigationContainer theme={{ colors: { background: '#000000' } } as any}>
             <Header />
             <Tab.Navigator screenOptions={{headerShown: false}}
             tabBar={(props) => <TabMenu {...props} />}

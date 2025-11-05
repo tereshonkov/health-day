@@ -5,7 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function TabMenu({ state, descriptors, navigation }: any) {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ backgroundColor: '#000000' }}>
       <View style={headerStyles.container}>
         <Image
           source={require("../../assets/hearts-bg.png")}

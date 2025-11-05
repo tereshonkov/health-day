@@ -11,7 +11,7 @@ export default function Header() {
   });
   const scale = useHeartbeat(1, 1.2, 400);
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ backgroundColor: '#000000' }}>
       <View style={headerStyles.container}>
         <Image
           source={require("../../assets/hearts-bg.png")}
