@@ -5,6 +5,7 @@ import List from "../screens/List";
 import Chat from "../screens/Chat";
 import Settings from "../screens/Settings";
 import Header from "../components/Header/Header";
+import TabMenu from "../components/TabMenu/TabMenu";
 
 const Tab = createBottomTabNavigator();
 
@@ -12,11 +13,21 @@ export default function AppNavigator() {
     return (
         <NavigationContainer>
             <Header />
-            <Tab.Navigator screenOptions={{headerShown: false}}>
-                <Tab.Screen name="Home" component={Home} />
-                <Tab.Screen name="List" component={List} />
-                <Tab.Screen name="Chat" component={Chat} />
-                <Tab.Screen name="Settings" component={Settings} />
+            <Tab.Navigator screenOptions={{headerShown: false}}
+            tabBar={(props) => <TabMenu {...props} />}
+            >
+                <Tab.Screen name="Home" component={Home} options={{
+                    icon: require("../assets/home.png")
+                } as any}/>
+                <Tab.Screen name="List" component={List} options={{
+                    icon: require("../assets/list.png")
+                } as any}/>
+                <Tab.Screen name="Chat" component={Chat} options={{
+                    icon: require("../assets/chat.png")
+                } as any}/>
+                <Tab.Screen name="Settings" component={Settings} options={{
+                    icon: require("../assets/settings.png")
+                } as any}/>
             </Tab.Navigator>
         </NavigationContainer>
     )

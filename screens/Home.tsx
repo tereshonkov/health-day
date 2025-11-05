@@ -1,10 +1,11 @@
-import { Text, View } from 'react-native';
+import { Keyboard, Pressable, Text } from 'react-native';
 import { styles } from '../styles/styles';
+import Pressure from '../components/Pressure/Pressure';
 
 export default function Home() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.textLg}>Home</Text>
-    </View>
+    <Pressable style={styles.container} onPress={Keyboard.dismiss}>
+      <Pressure />
+    </Pressable>
   )
 }
