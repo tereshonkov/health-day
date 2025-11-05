@@ -3,6 +3,10 @@ import { styles } from "../styles/styles";
 import Pressure from "../components/Pressure/Pressure";
 import Button from "../components/Button/Button";
 
+//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
+
+// ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIBM7EQvTj3QwE3kFAOJ+O+nhAiUaDctFHWuJYguqL4g tereshonkov.dima@gmail.com
+
 export default function Home() {
   return (
     <ScrollView
