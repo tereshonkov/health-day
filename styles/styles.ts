@@ -14,5 +14,9 @@ export const styles = StyleSheet.create({
     textLg: {
         fontSize: 32,
         color: '#59CECF',
+    },
+    icon: {
+        width: 60,
+        height: 60,
     }
 });
