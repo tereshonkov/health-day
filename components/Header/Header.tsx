@@ -2,9 +2,9 @@ import { Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function Header() {
-    const formatted = new Date().toLocaleDateString("ru-RU", {
+    const formatted = new Date().toLocaleDateString("uk-UA", {
   day: "numeric",
-  month: "short",
+  month: "long",
 });
   return (
     <SafeAreaView>
