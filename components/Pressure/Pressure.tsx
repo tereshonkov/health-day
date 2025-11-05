@@ -39,12 +39,7 @@ export default function Pressure() {
         >
           <TextInput
             keyboardType="numeric"
-            placeholder="120"
-            style={pressureStyles.input}
-          />
-          <TextInput
-            keyboardType="numeric"
-            placeholder="80"
+            placeholder="120/80"
             style={pressureStyles.input}
           />
         </View>
@@ -84,7 +79,8 @@ const pressureStyles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 20,
     overflow: "hidden",
-    gap: 31,
+    gap: 16,
+    zIndex: 10,
   },
   topBlock: {
     flexDirection: "row",
@@ -109,7 +105,7 @@ const pressureStyles = StyleSheet.create({
     color: "#59CECF",
     fontSize: 26,
     borderRadius: 20,
-    width: 161,
+    width: "100%",
     height: 78,
     justifyContent: "center",
     alignItems: "center",
