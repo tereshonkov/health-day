@@ -6,7 +6,7 @@ export default function SavedList() {
   return (
     <Pressable onPress={Keyboard.dismiss} style={pressureStyles.container}>
         <View style={pressureStyles.blockDay}>
-          <Text style={styles.textSm}>Збережені</Text>
+          <Text style={styles.textSm}>Історія вимірювань: 55</Text>
           <Image
             source={require("../../assets/save.png")}
             style={{ width: 17, height: 22 }}
@@ -26,7 +26,10 @@ export default function SavedList() {
         <SaveItem />
         <SaveItem />
         <SaveItem />
-        <SaveItem />
+        <Pressable style={({ pressed }) => [{ transform: [{ scale: pressed ? 0.75 : 1 }] }, {alignItems: "center"}]}>
+            <Image source={require("../../assets/arrow-down.png")}/>
+            <Text style={{ color: "#59CECF" }}>Показати більше</Text>
+        </Pressable>
       </View>
     </Pressable>
   );
