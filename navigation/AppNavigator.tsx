@@ -6,6 +6,7 @@ import Chat from "../screens/Chat";
 import Settings from "../screens/Settings";
 import Header from "../components/Header/Header";
 import TabMenu from "../components/TabMenu/TabMenu";
+import Tablets from "../screens/Tablets";
 
 const Tab = createBottomTabNavigator();
 
@@ -21,6 +22,9 @@ export default function AppNavigator() {
                 } as any}/>
                 <Tab.Screen name="List" component={List} options={{
                     icon: require("../assets/list.png")
+                } as any}/>
+                <Tab.Screen name="Tablets" component={Tablets} options={{
+                    icon: require("../assets/tablet.png")
                 } as any}/>
                 <Tab.Screen name="Chat" component={Chat} options={{
                     icon: require("../assets/chat.png")

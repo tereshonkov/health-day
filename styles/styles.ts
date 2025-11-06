@@ -51,6 +51,14 @@ export const styles = StyleSheet.create({
     height: 300,
     width: 300,
   },
+  tabletContainer: {
+    width: "100%",
+    gap: 16,
+    borderWidth: 1,
+    borderColor: "#59CECF",
+    borderRadius: 20,
+    padding: 10,
+  }
 });
 
 export const headerStyles = StyleSheet.create({
