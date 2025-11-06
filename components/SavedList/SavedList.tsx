@@ -1,17 +1,24 @@
-import { View, Text, StyleSheet, Keyboard, Pressable, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Keyboard,
+  Pressable,
+  Image,
+} from "react-native";
 import { styles } from "../../styles/styles";
 import SaveItem from "../SavedItem/SaveItem";
 
 export default function SavedList() {
   return (
     <Pressable onPress={Keyboard.dismiss} style={pressureStyles.container}>
-        <View style={pressureStyles.blockDay}>
-          <Text style={styles.textSm}>Історія вимірювань: 55</Text>
-          <Image
-            source={require("../../assets/save.png")}
-            style={{ width: 17, height: 22 }}
-          />
-        </View>
+      <View style={pressureStyles.blockDay}>
+        <Text style={styles.textSm}>Історія вимірювань: 55</Text>
+        <Image
+          source={require("../../assets/save.png")}
+          style={{ width: 17, height: 22 }}
+        />
+      </View>
       {/* Content */}
       <View
         style={{
@@ -26,9 +33,26 @@ export default function SavedList() {
         <SaveItem />
         <SaveItem />
         <SaveItem />
-        <Pressable style={({ pressed }) => [{ transform: [{ scale: pressed ? 0.75 : 1 }] }, {alignItems: "center"}]}>
-            <Image source={require("../../assets/arrow-down.png")}/>
-            <Text style={{ color: "#59CECF" }}>Показати більше</Text>
+        <Pressable
+          style={({ pressed }) => [
+            { transform: [{ scale: pressed ? 0.75 : 1 }] },
+            {
+              alignItems: "center",
+              borderWidth: 1,
+              borderColor: "#59CECF",
+              padding: 8,
+              borderRadius: 20,
+              flexDirection: "row",
+              gap: 8,
+              marginTop: 8,
+              backgroundColor: "#4621ca47",
+            },
+          ]}
+        >
+          <Image
+            source={require("../../assets/arrow-down.png")}
+            style={{ width: 27, height: 27 }}
+          />
         </Pressable>
       </View>
     </Pressable>

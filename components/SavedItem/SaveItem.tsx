@@ -15,7 +15,8 @@ export default function SaveItem() {
         backgroundColor: "#FFFFFF26",
       }}
     >
-      <Text style={{ fontSize: 16, color: "#59CECF" }}>01.11.2025 |</Text>
+      <Text style={{ fontSize: 16, color: "#59CECF" }}>01.11.2025</Text>
+            <Text style={{ fontSize: 16, color: "#59CECF" }}>| Ранок |</Text>
       <Text style={{ fontSize: 16, color: "#59CECF" }}>Тиск: 120/80</Text>
       <Text style={{ fontSize: 16, color: "#59CECF" }}>Пульс: 75</Text>
     </View>
