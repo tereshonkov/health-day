@@ -41,6 +41,16 @@ export const styles = StyleSheet.create({
     opacity: 0.7,
     transform: [{ scale: 0.98 }],
   },
+  backgroundImage: {
+    position: "absolute",
+    bottom: "50%",
+    transform: [{ translateY: 150 }],
+    right: 0,
+    opacity: 0.2,
+    zIndex: -1,
+    height: 300,
+    width: 300,
+  },
 });
 
 export const headerStyles = StyleSheet.create({

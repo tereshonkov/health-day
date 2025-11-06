@@ -8,8 +8,10 @@ import {
 } from "react-native";
 import { styles } from "../../styles/styles";
 import { MaskedTextInput } from "react-native-mask-text";
+import { useState } from "react";
 
 export default function Pressure({pressure, setPressure, pulse, setPulse}: any) {
+  const [morningActive, setMorningActive] = useState(true);
 
   const handlePressureChange = (text: string) => {
     const digitsOnly = text.replace(/[^0-9]/g, "");
@@ -28,12 +30,12 @@ export default function Pressure({pressure, setPressure, pulse, setPulse}: any) 
   return (
     <Pressable onPress={Keyboard.dismiss} style={pressureStyles.container}>
       <View style={pressureStyles.topBlock}>
-        <View style={pressureStyles.blockDayActive}>
+        <Pressable onPress={() => setMorningActive(true)} style={morningActive ? pressureStyles.blockDayActive : pressureStyles.blockDay}>
           <Text style={styles.textSm}>Ранок</Text>
-        </View>
-        <View style={pressureStyles.blockDay}>
+        </Pressable>
+        <Pressable onPress={() => setMorningActive(false)} style={morningActive ? pressureStyles.blockDay : pressureStyles.blockDayActive}>
           <Text style={styles.textSm}>Вечір</Text>
-        </View>
+        </Pressable>
       </View>
       <View
         style={{
@@ -104,7 +106,7 @@ const pressureStyles = StyleSheet.create({
     overflow: "hidden",
     gap: 8,
     zIndex: 10,
-    backgroundColor: "#06112B82",
+    backgroundColor: "#115C6F47",
   },
   topBlock: {
     flexDirection: "row",
