@@ -7,8 +7,27 @@ import {
   Pressable,
 } from "react-native";
 import { styles } from "../../styles/styles";
+import { useState } from "react";
+import { MaskedTextInput } from "react-native-mask-text";
 
 export default function Pressure() {
+  const [pressure, setPressure] = useState<string>("");
+  const [pulse, setPulse] = useState<string>("");
+
+  const handlePressureChange = (text: string) => {
+    const digitsOnly = text.replace(/[^0-9]/g, "");
+    const limited = digitsOnly.slice(0, 5);
+    const formatted =
+      limited.length <= 3
+        ? limited
+        : `${limited.slice(0, 3)}/${limited.slice(3)}`;
+
+    setPressure(formatted);
+  };
+  const handlePulseChange = (text: string) => {
+    const only = text.replace(/[^0-9]/g, "").slice(0, 3);
+    setPulse(only);
+  };
   return (
     <Pressable onPress={Keyboard.dismiss} style={pressureStyles.container}>
       <View style={pressureStyles.topBlock}>
@@ -37,10 +56,14 @@ export default function Pressure() {
             gap: 10,
           }}
         >
-          <TextInput
-            keyboardType="numeric"
+          <MaskedTextInput
+            mask="999/99"
+            keyboardType="number-pad"
             placeholder="120/80"
             style={pressureStyles.input}
+            value={pressure}
+            onChangeText={handlePressureChange}
+            maxLength={6}
           />
         </View>
       </View>
@@ -63,9 +86,12 @@ export default function Pressure() {
           }}
         >
           <TextInput
-            keyboardType="numeric"
+            keyboardType="number-pad"
             placeholder="65"
             style={pressureStyles.input}
+            value={pulse}
+            onChangeText={handlePulseChange}
+            maxLength={3}
           />
         </View>
       </View>
