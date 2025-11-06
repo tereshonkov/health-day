@@ -62,11 +62,11 @@ export default function Pressure() {
             gap: 10,
           }}
         >
-              <TextInput
-                keyboardType="numeric"
-                placeholder="65"
-                style={pressureStyles.input}
-              />
+          <TextInput
+            keyboardType="numeric"
+            placeholder="65"
+            style={pressureStyles.input}
+          />
         </View>
       </View>
     </Pressable>
@@ -81,6 +81,7 @@ const pressureStyles = StyleSheet.create({
     overflow: "hidden",
     gap: 16,
     zIndex: 10,
+    backgroundColor: "#06112B82",
   },
   topBlock: {
     flexDirection: "row",
