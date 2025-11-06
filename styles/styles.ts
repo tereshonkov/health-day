@@ -37,6 +37,10 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#000000",
   },
+  buttonPressed: {
+    opacity: 0.7,
+    transform: [{ scale: 0.98 }],
+  },
 });
 
 export const headerStyles = StyleSheet.create({

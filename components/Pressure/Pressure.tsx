@@ -7,12 +7,9 @@ import {
   Pressable,
 } from "react-native";
 import { styles } from "../../styles/styles";
-import { useState } from "react";
 import { MaskedTextInput } from "react-native-mask-text";
 
-export default function Pressure() {
-  const [pressure, setPressure] = useState<string>("");
-  const [pulse, setPulse] = useState<string>("");
+export default function Pressure({pressure, setPressure, pulse, setPulse}: any) {
 
   const handlePressureChange = (text: string) => {
     const digitsOnly = text.replace(/[^0-9]/g, "");
@@ -105,7 +102,7 @@ const pressureStyles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 20,
     overflow: "hidden",
-    gap: 16,
+    gap: 8,
     zIndex: 10,
     backgroundColor: "#06112B82",
   },
