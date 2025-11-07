@@ -6,7 +6,7 @@ import { registerForPush } from "./utils/notifications";
 
 export default function App() {
   useEffect(() => {
-    registerForPush();
+    registerForPush().catch(error => console.warn("Error registering for push notifications:", error));
   }, []);
   return (
     <SafeAreaProvider>
