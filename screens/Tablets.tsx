@@ -144,7 +144,7 @@ const updateReminder = async (key: ReminderKey, selected: Date) => {
   try {
     const { initialId, repeatingId } = await scheduleNotificationSafe(
       nextTime,
-      "Час випити таблетки",
+      "Нагадування про прийом таблеток",
       "Прийміть ваші таблетки зараз, будь ласка"
     );
 
