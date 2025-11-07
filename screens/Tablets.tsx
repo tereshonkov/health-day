@@ -4,6 +4,7 @@ import TabletItem from "../components/TabletItem/TabletItem";
 import TabletColumn from "../components/TabletColumn/TabletColumn";
 import { useState } from "react";
 import TimePickerCell from "../components/TimePicker/TimePickerCell";
+import { scheduleNotification } from '../utils/notifications';
 
 const initialItems = [
   {
@@ -114,7 +115,10 @@ export default function Tablets() {
         <TimePickerCell
           label="Ранок"
           value={times.morning}
-          onChange={(d) => setTimes(prev => ({ ...prev, morning: d }))}
+          onChange={(d) => {
+            setTimes(prev => ({ ...prev, morning: d }));
+            scheduleNotification(d, 'Час випити таблетки', 'Прийміть ваші таблетки зараз');
+          }}
         />
         <TabletColumn>
           {items &&
@@ -135,7 +139,10 @@ export default function Tablets() {
         <TimePickerCell
           label="Обід"
           value={times.lunch}
-          onChange={(d) => setTimes(prev => ({ ...prev, lunch: d }))}
+          onChange={(d) => {
+            setTimes(prev => ({ ...prev, lunch: d }));
+            scheduleNotification(d, 'Час випити таблетки', 'Прийміть ваші таблетки зараз');
+          }}
         />
         <TabletColumn >
           {items &&
@@ -156,7 +163,10 @@ export default function Tablets() {
         <TimePickerCell
           label="Вечеря"
           value={times.dinner}
-          onChange={(d) => setTimes(prev => ({ ...prev, dinner: d }))}
+          onChange={(d) => {
+            setTimes(prev => ({ ...prev, dinner: d }));
+            scheduleNotification(d, 'Час випити таблетки', 'Прийміть ваші таблетки зараз');
+          }}
         />
         <TabletColumn >
           {items &&
@@ -177,7 +187,10 @@ export default function Tablets() {
         <TimePickerCell
           label="Добові"
           value={times.night}
-          onChange={(d) => setTimes(prev => ({ ...prev, night: d }))}
+          onChange={(d) => {
+            setTimes(prev => ({ ...prev, night: d }));
+            scheduleNotification(d, 'Час випити таблетки', 'Прийміть ваші таблетки зараз');
+          }}
         />
         <TabletColumn>
           {items &&

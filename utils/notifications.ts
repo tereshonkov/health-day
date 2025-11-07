@@ -17,3 +17,13 @@ export async function registerForPush() {
     return;
   }
 }
+
+export async function scheduleNotification(date: Date, title: string, body: string) {
+    await Notifications.scheduleNotificationAsync({
+      content: { title, body },
+      trigger: {
+        type: 'timestamp',
+        timestamp: date.getTime(), 
+      } as unknown as Notifications.DateTriggerInput,
+    });
+  }
