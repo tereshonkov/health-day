@@ -4,7 +4,10 @@ import TabletItem from "../components/TabletItem/TabletItem";
 import TabletColumn from "../components/TabletColumn/TabletColumn";
 import { useState } from "react";
 import TimePickerCell from "../components/TimePicker/TimePickerCell";
-import { scheduleNotificationSafe } from '../utils/notifications';
+import {
+  scheduleNotificationSafe,
+  cancelNotificationSafe,
+} from "../utils/notifications";
 
 const initialItems = [
   {
@@ -93,13 +96,30 @@ const initialItems = [
   },
 ];
 
+const createTimeToday = (hour: number, minute: number) => {
+  const now = new Date();
+  return new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate(),
+    hour,
+    minute,
+    0,
+    0
+  );
+};
+
+type ReminderKey = "morning" | "lunch" | "dinner" | "night";
+type ReminderEntry = { time: Date; notificationIds: string[] };
+type ReminderState = Record<ReminderKey, ReminderEntry>;
+
 export default function Tablets() {
   const [items, setItems] = useState(initialItems);
-  const [times, setTimes] = useState({
-    morning: new Date(2024, 0, 1, 8, 0),
-    lunch: new Date(2024, 0, 1, 14, 0),
-    dinner: new Date(2024, 0, 1, 18, 0),
-    night: new Date(2024, 0, 1, 20, 0),
+  const [reminders, setReminders] = useState<ReminderState>({
+    morning: { time: createTimeToday(8, 0), notificationIds: [] },
+    lunch: { time: createTimeToday(14, 0), notificationIds: [] },
+    dinner: { time: createTimeToday(18, 0), notificationIds: [] },
+    night: { time: createTimeToday(20, 0), notificationIds: [] },
   });
   const handleToogle = (id: string) => {
     setItems((prevItems) =>
@@ -108,17 +128,41 @@ export default function Tablets() {
       )
     );
   };
+
+const updateReminder = async (key: ReminderKey, selected: Date) => {
+  const nextTime = new Date(selected);
+  setReminders((prev) => ({
+    ...prev,
+    [key]: { ...prev[key], time: nextTime },
+  }));
+
+  const prevIds = reminders[key].notificationIds;
+  for (const id of prevIds) {
+    await cancelNotificationSafe(id);
+  }
+
+  try {
+    const { initialId, repeatingId } = await scheduleNotificationSafe(
+      nextTime,
+      "Час випити таблетки",
+      "Прийміть ваші таблетки зараз, будь ласка"
+    );
+
+    setReminders(prev => ({
+      ...prev,
+      [key]: { time: nextTime, notificationIds: [initialId, repeatingId] },
+    }));
+  } catch (error) {
+    console.warn("Не вдалося запланувати нагадування:", error);
+  }
+};
   return (
     <ScrollView>
       <View style={styles.container}>
-
         <TimePickerCell
           label="Ранок"
-          value={times.morning}
-          onChange={(d) => {
-            setTimes(prev => ({ ...prev, morning: d }));
-            scheduleNotificationSafe(d, 'Час випити таблетки', 'Прийміть ваші таблетки зараз, будь ласка');
-          }}
+          value={reminders.morning.time}
+          onChange={(date: Date) => updateReminder("morning", date)}
         />
         <TabletColumn>
           {items &&
@@ -138,13 +182,10 @@ export default function Tablets() {
 
         <TimePickerCell
           label="Обід"
-          value={times.lunch}
-          onChange={(d) => {
-            setTimes(prev => ({ ...prev, lunch: d }));
-            scheduleNotificationSafe(d, 'Час випити таблетки', 'Прийміть ваші таблетки зараз, будь ласка');
-          }}
+          value={reminders.lunch.time}
+          onChange={(date: Date) => updateReminder("lunch", date)}
         />
-        <TabletColumn >
+        <TabletColumn>
           {items &&
             items
               .filter((item) => item.time === "lunch")
@@ -162,13 +203,10 @@ export default function Tablets() {
 
         <TimePickerCell
           label="Вечеря"
-          value={times.dinner}
-          onChange={(d) => {
-            setTimes(prev => ({ ...prev, dinner: d }));
-            scheduleNotificationSafe(d, 'Час випити таблетки', 'Прийміть ваші таблетки зараз , будь ласка');
-          }}
+          value={reminders.dinner.time}
+          onChange={(date: Date) => updateReminder("dinner", date)}
         />
-        <TabletColumn >
+        <TabletColumn>
           {items &&
             items
               .filter((item) => item.time === "dinner")
@@ -186,11 +224,8 @@ export default function Tablets() {
 
         <TimePickerCell
           label="Добові"
-          value={times.night}
-          onChange={(d) => {
-            setTimes(prev => ({ ...prev, night: d }));
-            scheduleNotificationSafe(d, 'Час випити таблетки', 'Прийміть ваші таблетки зараз , будь ласка');
-          }}
+          value={reminders.night.time}
+          onChange={(date: Date) => updateReminder("night", date)}
         />
         <TabletColumn>
           {items &&
