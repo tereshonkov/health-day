@@ -117,7 +117,7 @@ export default function Tablets() {
           value={times.morning}
           onChange={(d) => {
             setTimes(prev => ({ ...prev, morning: d }));
-            scheduleNotification(d, 'Час випити таблетки', 'Прийміть ваші таблетки зараз');
+            scheduleNotification(d, 'Час випити таблетки', 'Прийміть ваші таблетки зараз, будь ласка');
           }}
         />
         <TabletColumn>
@@ -141,7 +141,7 @@ export default function Tablets() {
           value={times.lunch}
           onChange={(d) => {
             setTimes(prev => ({ ...prev, lunch: d }));
-            scheduleNotification(d, 'Час випити таблетки', 'Прийміть ваші таблетки зараз');
+            scheduleNotification(d, 'Час випити таблетки', 'Прийміть ваші таблетки зараз, будь ласка');
           }}
         />
         <TabletColumn >
@@ -165,7 +165,7 @@ export default function Tablets() {
           value={times.dinner}
           onChange={(d) => {
             setTimes(prev => ({ ...prev, dinner: d }));
-            scheduleNotification(d, 'Час випити таблетки', 'Прийміть ваші таблетки зараз');
+            scheduleNotification(d, 'Час випити таблетки', 'Прийміть ваші таблетки зараз , будь ласка');
           }}
         />
         <TabletColumn >
@@ -189,7 +189,7 @@ export default function Tablets() {
           value={times.night}
           onChange={(d) => {
             setTimes(prev => ({ ...prev, night: d }));
-            scheduleNotification(d, 'Час випити таблетки', 'Прийміть ваші таблетки зараз');
+            scheduleNotification(d, 'Час випити таблетки', 'Прийміть ваші таблетки зараз , будь ласка');
           }}
         />
         <TabletColumn>
