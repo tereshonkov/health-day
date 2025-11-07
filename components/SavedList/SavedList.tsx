@@ -34,18 +34,18 @@ export default function SavedList() {
         <SaveItem />
         <SaveItem />
         <Pressable
-          style={({ pressed }) => [
+          style={({ pressed } : { pressed: boolean }) => [
             { transform: [{ scale: pressed ? 0.75 : 1 }] },
             {
-              alignItems: "center",
-              borderWidth: 1,
-              borderColor: "#59CECF",
-              padding: 8,
-              borderRadius: 20,
-              flexDirection: "row",
-              gap: 8,
+              // alignItems: "center",
+              // borderWidth: 1,
+              // borderColor: "#59CECF",
+              // padding: 8,
+              // borderRadius: 20,
+              // flexDirection: "row",
+              // gap: 8,
               marginTop: 8,
-              backgroundColor: "#4621ca47",
+              // backgroundColor: "#4621ca47",
             },
           ]}
         >
