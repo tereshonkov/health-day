@@ -227,7 +227,7 @@ export const darkTheme = StyleSheet.create({
     backgroundColor: "#FFFFFFA1",
   },
   tabBar: {
-    backgroundColor: "#115C6FA2",
+    backgroundColor: "#115C6F33",
     borderRadius: 100,
     padding: 16,
     marginHorizontal: 16,

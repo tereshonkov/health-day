@@ -24,7 +24,7 @@ export default function Pressure({pressure, setPressure, pulse, setPulse}: any) 
         ? limited
         : `${limited.slice(0, 3)}/${limited.slice(3)}`;
 
-    setPressure(formatted);
+    setPressure((prev: string) => (prev === formatted ? prev : formatted));
   };
   const handlePulseChange = (text: string) => {
     const only = text.replace(/[^0-9]/g, "").slice(0, 3);

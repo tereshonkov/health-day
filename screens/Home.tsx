@@ -30,7 +30,7 @@ export default function Home() {
           alignItems: "center",
           gap: 32,
           paddingVertical: 24,
-          paddingHorizontal: 16,
+          paddingHorizontal: 24,
         }}
         onPress={Keyboard.dismiss}
       >
