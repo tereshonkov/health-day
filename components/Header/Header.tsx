@@ -1,4 +1,4 @@
-import { Text, View, Image, StyleSheet, Animated } from "react-native";
+import { Text, View, Image, Animated } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "../../styles/styles";
 import { useHeartbeat } from "../../hooks/useHeartbeat";

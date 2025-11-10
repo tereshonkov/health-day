@@ -7,10 +7,6 @@ export default function TabMenu({ state, descriptors, navigation }: any) {
   return (
     <SafeAreaView style={{ backgroundColor: '#000000' }}>
       <View style={headerStyles.container}>
-        <Image
-          source={require("../../assets/hearts-bg.png")}
-          style={headerStyles.bgImageBottom}
-        />
         {state.routes.map((route: any, index: number) => {
           const isFocused = state.index === index;
           const { options } = descriptors[route.key];

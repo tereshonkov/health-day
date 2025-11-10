@@ -7,10 +7,17 @@ import Settings from "../screens/Settings";
 import Header from "../components/Header/Header";
 import TabMenu from "../components/TabMenu/TabMenu";
 import Tablets from "../screens/Tablets";
+import { useColorScheme } from "react-native";
+import { darkTheme, lightTheme } from "../styles/theme";
+import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
 
 const Tab = createBottomTabNavigator();
 
 export default function AppNavigator() {
+    const colorScheme = useColorScheme();
+    const getIcon = (iconDark: any, iconLight: any) => {
+        return colorScheme === "dark" ? iconDark : iconLight;
+    }
     return (
         <NavigationContainer theme={{ colors: { background: '#000000' } } as any}>
             <Header />
@@ -18,19 +25,19 @@ export default function AppNavigator() {
             tabBar={(props) => <TabMenu {...props} />}
             >
                 <Tab.Screen name="Home" component={Home} options={{
-                    icon: require("../assets/home.png")
+                   icon: getIcon(require("../assets/homeLight.png"), require("../assets/home.png"))
                 } as any}/>
                 <Tab.Screen name="List" component={List} options={{
-                    icon: require("../assets/list.png")
+                    icon: getIcon(require("../assets/listLight.png"), require("../assets/list.png"))
                 } as any}/>
                 <Tab.Screen name="Tablets" component={Tablets} options={{
-                    icon: require("../assets/tablet.png")
+                    icon: getIcon(require("../assets/tabletsLight.png"), require("../assets/tablets.png"))
                 } as any}/>
                 <Tab.Screen name="Chat" component={Chat} options={{
-                    icon: require("../assets/chat.png")
+                    icon: getIcon(require("../assets/chatLight.png"), require("../assets/chat.png"))
                 } as any}/>
                 <Tab.Screen name="Settings" component={Settings} options={{
-                    icon: require("../assets/settings.png")
+                    icon: getIcon(require("../assets/settingsLight.png"), require("../assets/settings.png"))
                 } as any}/>
             </Tab.Navigator>
         </NavigationContainer>
