@@ -1,0 +1,76 @@
+import { StyleSheet } from "react-native";
+
+export const lightTheme = StyleSheet.create({
+  background: {
+    backgroundColor: "linear-gradient(180deg, #A3E4EC 0%, #C4F1F7 50%, #A3E4EC 100%)",
+  },
+  container: {
+    paddingTop: 16,
+    paddingBottom: 16,
+    paddingLeft: 10,
+    paddingRight: 10,
+    backgroundColor: "#F7FAFFA6",
+    borderWidth: 1,
+    borderColor: "#FFFFFFA4",
+    borderRadius: 20,
+    gap: 16,
+    boxShadow: "0px 2px 6px #FFFFFFA4",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  textXl: {
+    fontSize: 26,
+  },
+  textLg: {
+    fontSize: 22,
+  },
+  textSm: {
+    fontSize: 16,
+  },
+  primary: {
+    color: "#5932EA",
+  },
+  secondary: {
+    color: "#364A5F",
+  },
+  popupBlue: {
+    color: "#0F3DB4A6",
+    gap: 11,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 20,
+  },
+  popupRed: {
+    color: "#B40F0FA6",
+    gap: 11,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 20,
+  },
+  popupGreen: {
+    color: "#0FB40FA6",
+    gap: 11,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 20,
+  },
+  popupYellow: {
+    color: "#B4A90FA6",
+    gap: 11,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 20,
+  },
+  btn: {
+    width: 262,
+    height: 89,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 20,
+    fontSize: 22,
+    backgroundColor: "#5932EA",
+    borderWidth: 1,
+    borderColor: "#8CBFFF",
+    boxShadow: "0px 2px 6px #8CBFFFA4",
+  },
+});
