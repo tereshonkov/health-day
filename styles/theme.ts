@@ -200,7 +200,7 @@ export const darkTheme = StyleSheet.create({
   btnVersion: {
     paddingVertical: 12,
     paddingHorizontal: 16,
-    backgroundColor: "#364A5F",
+    backgroundColor: "#59CECFA6",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 100,
