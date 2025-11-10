@@ -5,12 +5,15 @@ import {
   TextInput,
   Keyboard,
   Pressable,
+  useColorScheme,
 } from "react-native";
-import { styles } from "../../styles/styles";
 import { MaskedTextInput } from "react-native-mask-text";
 import { useState } from "react";
+import { darkTheme, lightTheme } from "../../styles/theme";
 
 export default function Pressure({pressure, setPressure, pulse, setPulse}: any) {
+  const colorScheme = useColorScheme();
+  const theme = colorScheme === "dark" ? darkTheme : lightTheme;
   const [morningActive, setMorningActive] = useState(true);
 
   const handlePressureChange = (text: string) => {
@@ -28,15 +31,7 @@ export default function Pressure({pressure, setPressure, pulse, setPulse}: any) 
     setPulse(only);
   };
   return (
-    <Pressable onPress={Keyboard.dismiss} style={pressureStyles.container}>
-      <View style={pressureStyles.topBlock}>
-        <Pressable onPress={() => setMorningActive(true)} style={morningActive ? pressureStyles.blockDayActive : pressureStyles.blockDay}>
-          <Text style={styles.textSm}>Ранок</Text>
-        </Pressable>
-        <Pressable onPress={() => setMorningActive(false)} style={morningActive ? pressureStyles.blockDay : pressureStyles.blockDayActive}>
-          <Text style={styles.textSm}>Вечір</Text>
-        </Pressable>
-      </View>
+    <Pressable onPress={Keyboard.dismiss} style={theme.container}>
       <View
         style={{
           justifyContent: "center",
@@ -47,7 +42,7 @@ export default function Pressure({pressure, setPressure, pulse, setPulse}: any) 
           marginLeft: 16,
         }}
       >
-        <Text style={styles.textLg}>Тиск</Text>
+        <Text style={theme.textLg}>Тиск</Text>
         <View
           style={{
             flexDirection: "row",
@@ -59,7 +54,7 @@ export default function Pressure({pressure, setPressure, pulse, setPulse}: any) 
             mask="999/99"
             keyboardType="number-pad"
             placeholder="120/80"
-            style={pressureStyles.input}
+            style={theme.input}
             value={pressure}
             onChangeText={handlePressureChange}
             maxLength={6}
@@ -76,7 +71,7 @@ export default function Pressure({pressure, setPressure, pulse, setPulse}: any) 
           marginLeft: 16,
         }}
       >
-        <Text style={styles.textLg}>Пульс</Text>
+        <Text style={theme.textLg}>Пульс</Text>
         <View
           style={{
             flexDirection: "row",
@@ -87,7 +82,7 @@ export default function Pressure({pressure, setPressure, pulse, setPulse}: any) 
           <TextInput
             keyboardType="number-pad"
             placeholder="65"
-            style={pressureStyles.input}
+            style={theme.input}
             value={pulse}
             onChangeText={handlePulseChange}
             maxLength={3}
@@ -97,45 +92,3 @@ export default function Pressure({pressure, setPressure, pulse, setPulse}: any) 
     </Pressable>
   );
 }
-
-const pressureStyles = StyleSheet.create({
-  container: {
-    borderColor: "#59CECF",
-    borderWidth: 1,
-    borderRadius: 20,
-    overflow: "hidden",
-    gap: 8,
-    zIndex: 10,
-    backgroundColor: "#115C6F47",
-  },
-  topBlock: {
-    flexDirection: "row",
-  },
-  blockDayActive: {
-    paddingTop: 24,
-    paddingBottom: 24,
-    paddingLeft: 64,
-    paddingRight: 64,
-    backgroundColor: "#115C6F",
-  },
-  blockDay: {
-    paddingTop: 24,
-    paddingBottom: 24,
-    paddingLeft: 64,
-    paddingRight: 64,
-    backgroundColor: "#073844",
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: "#59CECF",
-    color: "#59CECF",
-    fontSize: 26,
-    borderRadius: 20,
-    width: "100%",
-    height: 78,
-    justifyContent: "center",
-    alignItems: "center",
-    textAlign: "center",
-    backgroundColor: "#FFFFFF26",
-  },
-});

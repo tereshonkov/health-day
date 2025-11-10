@@ -2,15 +2,22 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import AppNavigator from "./navigation/AppNavigator";
 import { useEffect } from "react";
 import { registerForPush } from "./utils/notifications";
+import { LinearGradient } from "expo-linear-gradient";
+import { useColorScheme } from "react-native";
+import { darkGradient, lightGradient } from "./styles/theme";
 
 
 export default function App() {
   useEffect(() => {
     registerForPush().catch(error => console.warn("Error registering for push notifications:", error));
   }, []);
+  const colorScheme = useColorScheme();
+  const theme = colorScheme === "dark" ? darkGradient : lightGradient;
   return (
     <SafeAreaProvider>
-        <AppNavigator />
+        <LinearGradient colors={theme} style={{flex: 1}}>
+          <AppNavigator />
+        </LinearGradient>
     </SafeAreaProvider>
   );
 }

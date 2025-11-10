@@ -1,4 +1,4 @@
-import { NavigationContainer } from "@react-navigation/native";
+import { DefaultTheme, NavigationContainer, DarkTheme } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "../screens/Home";
 import List from "../screens/List";
@@ -8,20 +8,22 @@ import Header from "../components/Header/Header";
 import TabMenu from "../components/TabMenu/TabMenu";
 import Tablets from "../screens/Tablets";
 import { useColorScheme } from "react-native";
-import { darkTheme, lightTheme } from "../styles/theme";
-import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
 
 const Tab = createBottomTabNavigator();
 
 export default function AppNavigator() {
     const colorScheme = useColorScheme();
-    const getIcon = (iconDark: any, iconLight: any) => {
+    const getIcon = (iconLight: any, iconDark: any) => {
         return colorScheme === "dark" ? iconDark : iconLight;
     }
+      const navigationTheme =
+    colorScheme === "dark"
+      ? { ...DarkTheme, colors: { ...DarkTheme.colors, background: "transparent" } }
+      : { ...DefaultTheme, colors: { ...DefaultTheme.colors, background: "transparent" } };
     return (
-        <NavigationContainer theme={{ colors: { background: '#000000' } } as any}>
+        <NavigationContainer theme={navigationTheme}>
             <Header />
-            <Tab.Navigator screenOptions={{headerShown: false}}
+            <Tab.Navigator screenOptions={{headerShown: false, tabBarStyle: { backgroundColor: "transparent" }}}
             tabBar={(props) => <TabMenu {...props} />}
             >
                 <Tab.Screen name="Home" component={Home} options={{

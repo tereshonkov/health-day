@@ -1,10 +1,13 @@
-import { Keyboard, Pressable, ScrollView, Image } from "react-native";
-import { styles } from "../styles/styles";
+import { Keyboard, Pressable, ScrollView, Text } from "react-native";
 import Pressure from "../components/Pressure/Pressure";
 import Button from "../components/Button/Button";
 import { useState } from "react";
+import { useColorScheme } from "react-native";
+import { darkTheme, lightTheme } from "../styles/theme";
 
 export default function Home() {
+  const colorScheme = useColorScheme();
+  const theme = colorScheme === "dark" ? darkTheme : lightTheme;
   const [pressure, setPressure] = useState<string>("");
   const [pulse, setPulse] = useState<string>("");
   const handleOnChange = () => {
@@ -15,24 +18,23 @@ export default function Home() {
   return (
     <ScrollView
       contentContainerStyle={{
-        flexGrow: 1,
         justifyContent: "flex-start",
       }}
+      style={{ flex: 1, backgroundColor: "transparent" }}
       keyboardShouldPersistTaps="handled"
     >
       <Pressable
         style={{
-          ...styles.container,
+          backgroundColor: "transparent",
+          flex: 1,
+          alignItems: "center",
           gap: 32,
-          paddingBottom: 24,
-          paddingTop: 24,
+          paddingVertical: 24,
+          paddingHorizontal: 16,
         }}
         onPress={Keyboard.dismiss}
       >
-        <Image
-          source={require("../assets/smoke.png")}
-          style={styles.backgroundImage}
-        />
+        <Text style={[theme.textXl, theme.primary]}>Збережи свої дані</Text>
         <Pressure
           pressure={pressure}
           setPressure={setPressure}

@@ -1,31 +1,24 @@
-import { Text, View, Image, Animated } from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { styles } from "../../styles/styles";
-import { useHeartbeat } from "../../hooks/useHeartbeat";
-import { headerStyles } from "../../styles/styles";
+import { useColorScheme } from "react-native";
+import { darkTheme, lightTheme } from "../../styles/theme";
 
 export default function Header() {
-  const formatted = new Date().toLocaleDateString("uk-UA", {
-    day: "numeric",
-    month: "long",
-  });
-  const scale = useHeartbeat(1, 1.2, 400);
+  const colorScheme = useColorScheme();
+  const theme = colorScheme === "dark" ? darkTheme : lightTheme;
+  console.log(colorScheme);
+  
   return (
-    <SafeAreaView style={{ backgroundColor: '#000000' }}>
-      <View style={headerStyles.container}>
-        <Image
-          source={require("../../assets/hearts-bg.png")}
-          style={headerStyles.bgImage}
-        />
-        <View style={headerStyles.avatar}></View>
-        <Text style={styles.textLg}>{formatted}</Text>
-        <Animated.Image
-          source={require("../../assets/heart.png")}
-          style={[headerStyles.heart, { transform: [{ scale }] }]}
-        />
+    <SafeAreaView style={{ backgroundColor: 'transparent' }}>
+      <View style={{justifyContent: "space-between", alignItems: "center", flexDirection: "row", paddingHorizontal: 16, paddingVertical: 10}}>
+        <View style={theme.circleHeader}></View>
+        <TouchableOpacity style={theme.btnVersion}>
+          <Text style={theme.textSm}>Pro version</Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
 }
+
 
 

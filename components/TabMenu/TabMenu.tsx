@@ -1,12 +1,14 @@
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import { View, Image, TouchableOpacity, useColorScheme } from "react-native";
 import { styles } from "../../styles/styles";
-import { headerStyles } from "../../styles/styles";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { darkTheme, lightTheme } from "../../styles/theme";
 
 export default function TabMenu({ state, descriptors, navigation }: any) {
+  const colorScheme = useColorScheme();
+  const theme = colorScheme === "dark" ? darkTheme : lightTheme;
   return (
-    <SafeAreaView style={{ backgroundColor: '#000000' }}>
-      <View style={headerStyles.container}>
+    <SafeAreaView style={{ backgroundColor: 'transparent' }}>
+      <View style={theme.tabBar}>
         {state.routes.map((route: any, index: number) => {
           const isFocused = state.index === index;
           const { options } = descriptors[route.key];
