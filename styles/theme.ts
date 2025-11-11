@@ -232,8 +232,8 @@ export const darkTheme = StyleSheet.create({
     borderWidth: 4,
     borderColor: "#59CECF",
     borderRadius: 100,
-    width: 60,
-    height: 60,
+    width: 40,
+    height: 40,
   },
   input: {
     borderWidth: 1,
