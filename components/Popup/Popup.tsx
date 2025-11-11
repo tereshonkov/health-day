@@ -18,11 +18,11 @@ export default function Popup({ color }: { color: (typeof colors)[number] }) {
       style={{ width: 16, height: 16, resizeMode: "contain" }}
         source={
           theme === lightTheme
-            ? require(`../../assets/info-black.png`)
+            ? require(`../../assets/info-white.png`)
             : require(`../../assets/info-green.png`)
         }
       />
-      <Text style={[theme.textSm, theme.secondary]}>Popup {color}</Text>
+      <Text style={[theme.textSm, theme.popupText]}>Popup {color}</Text>
     </View>
   );
 }

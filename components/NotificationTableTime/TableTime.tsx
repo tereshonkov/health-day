@@ -7,10 +7,10 @@ export default function TableTime() {
   return (
     <View style={[theme.container, {flexDirection: 'row', gap: 10, width: '100%', alignItems: 'center', height: 114}]}>
         <Image
-          source={require("../../assets/info-black.png")}
+          source={theme === lightTheme ? require("../../assets/info-black.png") : require("../../assets/info-green.png")}
           style={{ width: 18, height: 18, resizeMode: "contain" }}
         />
-        <Text style={[theme.textLg, theme.secondary]}>Випити таблетки: 14:00</Text>
+        <Text style={[theme.textLg, theme.secondary, {fontWeight: "bold"}]}>Випити таблетки: 14:00</Text>
     </View>
   )
 }

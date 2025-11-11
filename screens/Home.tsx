@@ -8,6 +8,9 @@ import { darkTheme, lightTheme } from "../styles/theme";
 import TableTime from "../components/NotificationTableTime/TableTime";
 import getColor from "../utils/popupColor";
 import Popup from "../components/Popup/Popup";
+import LineChartTable from "../components/LineChart/LineChartTable";
+import RadialChart from "../components/RadialChart/RadialChart";
+import CardContainer from "../components/CardContainer/CardContainer";
 
 type colorType = "red" | "yellow" | "green" | "blue";
 
@@ -56,7 +59,9 @@ export default function Home() {
         }}
         onPress={Keyboard.dismiss}
       >
+        <LineChartTable />
         <TableTime />
+        <RadialChart pulse={pulse ? parseInt(pulse) : 60} />
         <Text style={[theme.textXl, theme.primary]}>Збережи свої дані</Text>
         <Pressure
           pressure={pressure}
@@ -66,6 +71,16 @@ export default function Home() {
         />
         <Button onPress={handleOnChange}>Зберегти</Button>
         {popupVisible && <Popup color={popupColor} />}
+        {popupVisible && (
+          <CardContainer>
+            <Text
+              style={[theme.textSm, theme.secondary, { fontWeight: "bold" }]}
+            >
+              Трохи відпочинь і розслабся. Пий воду, щоб підтримувати сили. Якщо
+              стане гірше — звернися до лікаря.
+            </Text>
+          </CardContainer>
+        )}
       </Pressable>
     </ScrollView>
   );

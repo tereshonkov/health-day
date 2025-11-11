@@ -39,7 +39,7 @@ export default function Pressure({pressure, setPressure, pulse, setPulse}: any) 
           marginLeft: 16,
         }}
       >
-        <Text style={theme.textLg}>Тиск</Text>
+        <Text style={[theme.textLg, theme.secondary]}>Тиск</Text>
         <View
           style={{
             flexDirection: "row",
@@ -68,7 +68,7 @@ export default function Pressure({pressure, setPressure, pulse, setPulse}: any) 
           marginLeft: 16,
         }}
       >
-        <Text style={theme.textLg}>Пульс</Text>
+        <Text style={[theme.textLg, theme.secondary]}>Пульс</Text>
         <View
           style={{
             flexDirection: "row",

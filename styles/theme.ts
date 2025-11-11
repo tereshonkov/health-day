@@ -41,6 +41,9 @@ export const lightTheme = StyleSheet.create({
   secondary: {
     color: "#364A5F",
   },
+  popupText: {
+    color: "#FFFFFF",
+  },
   popupBlue: {
     backgroundColor: "#0F3DB4A6",
     gap: 11,
@@ -51,7 +54,7 @@ export const lightTheme = StyleSheet.create({
     width: "100%",
   },
   popupRed: {
-    backgroundColor: "#B40F0FA6",
+    backgroundColor: "#fa0f0fff",
     gap: 11,
     justifyContent: "center",
     alignItems: "center",
@@ -178,7 +181,7 @@ export const darkTheme = StyleSheet.create({
     width: "100%",
   },
   popupRed: {
-    backgroundColor: "#B40F0FA6",
+    backgroundColor: "#fa0f0fff",
     gap: 11,
     justifyContent: "center",
     alignItems: "center",
@@ -203,6 +206,9 @@ export const darkTheme = StyleSheet.create({
     borderRadius: 100,
     padding: 18,
     width: "100%",
+  },
+  popupText: {
+    color: "#59CECF",
   },
   btn: {
     width: 262,
@@ -232,7 +238,7 @@ export const darkTheme = StyleSheet.create({
   input: {
     borderWidth: 1,
     borderColor: "#59CECF",
-    color: "#364A5F",
+    color: "#59CECF",
     fontSize: 26,
     borderRadius: 20,
     width: "100%",
@@ -240,7 +246,7 @@ export const darkTheme = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
-    backgroundColor: "#FFFFFFA1",
+    backgroundColor: "#115C6F",
   },
   tabBar: {
     backgroundColor: "#115C6F33",
