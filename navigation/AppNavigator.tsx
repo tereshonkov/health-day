@@ -22,8 +22,8 @@ export default function AppNavigator() {
       : { ...DefaultTheme, colors: { ...DefaultTheme.colors, background: "transparent" } };
     return (
         <NavigationContainer theme={navigationTheme}>
-            <Header />
-            <Tab.Navigator screenOptions={{headerShown: false, tabBarStyle: { backgroundColor: "transparent" }}}
+            {/* <Header /> */}
+            <Tab.Navigator screenOptions={{headerShown: false, tabBarStyle: { backgroundColor: "transparent", height: 50} }}
             tabBar={(props) => <TabMenu {...props} />}
             >
                 <Tab.Screen name="Home" component={Home} options={{

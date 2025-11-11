@@ -249,13 +249,15 @@ export const darkTheme = StyleSheet.create({
     backgroundColor: "#115C6F",
   },
   tabBar: {
-    backgroundColor: "#115C6F33",
+    backgroundColor: "#115C6F",
     borderRadius: 100,
     padding: 16,
-    marginHorizontal: 16,
+    marginHorizontal: "5%",
     flexDirection: "row",
     justifyContent: "space-between",
     borderWidth: 1,
     borderColor: "#59CECF",
+    width: "90%",
+    alignSelf: "center",
   },
 });

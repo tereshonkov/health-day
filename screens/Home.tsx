@@ -11,6 +11,10 @@ import Popup from "../components/Popup/Popup";
 import LineChartTable from "../components/LineChart/LineChartTable";
 import RadialChart from "../components/RadialChart/RadialChart";
 import CardContainer from "../components/CardContainer/CardContainer";
+import {
+  SafeAreaView,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
 
 type colorType = "red" | "yellow" | "green" | "blue";
 
@@ -22,6 +26,7 @@ export default function Home() {
   const [popupVisible, setPopupVisible] = useState<boolean>(false);
   const [popupColor, setPopupColor] = useState<colorType>("green");
   const scrollRef = useRef<ScrollView>(null);
+  const insets = useSafeAreaInsets();
 
   const handleOnChange = () => {
     console.log(pressure, pulse);
@@ -40,48 +45,52 @@ export default function Home() {
   };
 
   return (
-    <ScrollView
-      ref={scrollRef}
-      contentContainerStyle={{
-        justifyContent: "flex-start",
-        flexGrow: 1,
-      }}
-      style={{ backgroundColor: "transparent" }}
-      keyboardShouldPersistTaps="handled"
-    >
-      <Pressable
-        style={{
-          backgroundColor: "transparent",
-          alignItems: "center",
-          gap: 32,
-          paddingVertical: 24,
-          paddingHorizontal: 24,
+    <SafeAreaView>
+      <ScrollView
+        ref={scrollRef}
+        contentContainerStyle={{
+          justifyContent: "flex-start",
+          flexGrow: 1,
+          paddingBottom: insets.bottom + 30,
         }}
-        onPress={Keyboard.dismiss}
+        style={{ backgroundColor: "transparent" }}
+        keyboardShouldPersistTaps="handled"
       >
-        <LineChartTable />
-        <TableTime />
-        <RadialChart pulse={pulse ? parseInt(pulse) : 60} />
-        <Text style={[theme.textXl, theme.primary]}>Збережи свої дані</Text>
-        <Pressure
-          pressure={pressure}
-          setPressure={setPressure}
-          pulse={pulse}
-          setPulse={setPulse}
-        />
-        <Button onPress={handleOnChange}>Зберегти</Button>
-        {popupVisible && <Popup color={popupColor} />}
-        {popupVisible && (
-          <CardContainer>
-            <Text
-              style={[theme.textSm, theme.secondary, { fontWeight: "bold" }]}
-            >
-              Трохи відпочинь і розслабся. Пий воду, щоб підтримувати сили. Якщо
-              стане гірше — звернися до лікаря.
-            </Text>
-          </CardContainer>
-        )}
-      </Pressable>
-    </ScrollView>
+        <Pressable
+          style={{
+            backgroundColor: "transparent",
+            alignItems: "center",
+            gap: 32,
+            paddingVertical: 24,
+            paddingHorizontal: 24,
+          }}
+          onPress={Keyboard.dismiss}
+        >
+          <Text style={[theme.textXl, theme.primary]}>Переглядай статистику</Text>
+          <LineChartTable />
+          <TableTime />
+          <RadialChart pulse={pulse ? parseInt(pulse) : 60} />
+          <Text style={[theme.textXl, theme.primary]}>Збережи свої дані</Text>
+          <Pressure
+            pressure={pressure}
+            setPressure={setPressure}
+            pulse={pulse}
+            setPulse={setPulse}
+          />
+          <Button onPress={handleOnChange}>Зберегти</Button>
+          {popupVisible && <Popup color={popupColor} />}
+          {popupVisible && (
+            <CardContainer>
+              <Text
+                style={[theme.textSm, theme.secondary, { fontWeight: "bold" }]}
+              >
+                Трохи відпочинь і розслабся. Пий воду, щоб підтримувати сили.
+                Якщо стане гірше — звернися до лікаря.
+              </Text>
+            </CardContainer>
+          )}
+        </Pressable>
+      </ScrollView>
+    </SafeAreaView>
   );
 }

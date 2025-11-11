@@ -7,15 +7,15 @@ import {
   View,
 } from "react-native";
 import Button from "../components/Button/Button";
-import SavedList from "../components/SavedList/SavedList";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { darkTheme, lightTheme } from "../styles/theme";
-import { Calendar } from "react-native-calendars";
 import CalendarComponent from "../components/Сalendar/Calendar";
 
 export default function List() {
   const colorScheme = useColorScheme();
   const theme = colorScheme === "dark" ? darkTheme : lightTheme;
   return (
+    <SafeAreaView>
     <ScrollView
       contentContainerStyle={{
         flexGrow: 1,
@@ -25,14 +25,20 @@ export default function List() {
     >
       <Pressable
         onPress={Keyboard.dismiss}
-        style={{ paddingHorizontal: 16, gap: 28, alignItems: "center" }}
+        style={{ paddingHorizontal: 16, gap: 28, alignItems: "center", paddingTop: 24 }}
       >
         <View style={{ gap: 16, alignItems: "center" }}>
           <Text style={[theme.primary, theme.textXl]}>Генеруй PDF</Text>
         </View>
         <CalendarComponent />
         <Button onPress={() => {}}>Завантажити</Button>
+        <View style={theme.container}>
+          <Text style={[theme.primary, theme.textSm, {textAlign: "center"}]}>
+            Твій лікар отримає PDF з усіма твоїми вимірами та графіками
+          </Text>
+        </View>
       </Pressable>
     </ScrollView>
+    </SafeAreaView>
   );
 }
