@@ -1,20 +1,17 @@
 import {
   View,
   Text,
-  StyleSheet,
   TextInput,
   Keyboard,
   Pressable,
   useColorScheme,
 } from "react-native";
 import { MaskedTextInput } from "react-native-mask-text";
-import { useState } from "react";
 import { darkTheme, lightTheme } from "../../styles/theme";
 
 export default function Pressure({pressure, setPressure, pulse, setPulse}: any) {
   const colorScheme = useColorScheme();
   const theme = colorScheme === "dark" ? darkTheme : lightTheme;
-  const [morningActive, setMorningActive] = useState(true);
 
   const handlePressureChange = (text: string) => {
     const digitsOnly = text.replace(/[^0-9]/g, "");
