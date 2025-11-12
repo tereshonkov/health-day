@@ -15,7 +15,6 @@ import { useRef } from "react";
 import { darkTheme, lightTheme } from "../styles/theme";
 import ModalItem from "../components/Modal/Modal";
 
-
 const initialItems = [
   {
     id: "1",
@@ -141,42 +140,56 @@ export default function Tablets() {
     );
   };
 
-const updateReminder = async (key: ReminderKey, selected: Date) => {
-  const nextTime = new Date(selected);
-  setReminders((prev) => ({
-    ...prev,
-    [key]: { ...prev[key], time: nextTime },
-  }));
-
-  const prevIds = reminders[key].notificationIds;
-  for (const id of prevIds) {
-    await cancelNotificationSafe(id);
-  }
-
-  try {
-    const { initialId, repeatingId } = await scheduleNotificationSafe(
-      nextTime,
-      "Нагадування про прийом таблеток",
-      "Прийміть ваші таблетки зараз, будь ласка"
-    );
-
-    setReminders(prev => ({
+  const updateReminder = async (key: ReminderKey, selected: Date) => {
+    const nextTime = new Date(selected);
+    setReminders((prev) => ({
       ...prev,
-      [key]: { time: nextTime, notificationIds: [initialId, repeatingId] },
+      [key]: { ...prev[key], time: nextTime },
     }));
-  } catch (error) {
-    console.warn("Не вдалося запланувати нагадування:", error);
-  }
-};
+
+    const prevIds = reminders[key].notificationIds;
+    for (const id of prevIds) {
+      await cancelNotificationSafe(id);
+    }
+
+    try {
+      const { initialId, repeatingId } = await scheduleNotificationSafe(
+        nextTime,
+        "Нагадування про прийом таблеток",
+        "Прийміть ваші таблетки зараз, будь ласка"
+      );
+
+      setReminders((prev) => ({
+        ...prev,
+        [key]: { time: nextTime, notificationIds: [initialId, repeatingId] },
+      }));
+    } catch (error) {
+      console.warn("Не вдалося запланувати нагадування:", error);
+    }
+  };
+  const [activeModal, setActiveModal] = useState<ReminderKey | null>(null);
   return (
     <SafeAreaView>
-    <ScrollView ref={scrollRef} contentContainerStyle={{ paddingBottom: insets.bottom + 60, paddingTop: 20 }}>
-      <Text style={[theme.textXl, theme.primary, {textAlign: "center"}]}>Налаштуй нагадування</Text>
-      <ModalItem isVisible={true} onClose={() => {}} />
+      <ScrollView
+        ref={scrollRef}
+        contentContainerStyle={{
+          paddingBottom: insets.bottom + 60,
+          paddingTop: 20,
+        }}
+      >
+        <Text style={[theme.textXl, theme.primary, { textAlign: "center" }]}>
+          Налаштуй нагадування
+        </Text>
+        <ModalItem
+          isVisible={!!activeModal}
+          onClose={() => setActiveModal(null)}
+          reminderKey={activeModal!}
+        />
         <TimePickerCell
           label="Ранок"
           value={reminders.morning.time}
           onChange={(date: Date) => updateReminder("morning", date)}
+          visibleModal={() => setActiveModal(activeModal || "morning")}
         />
         <TabletColumn>
           {items &&
@@ -198,6 +211,7 @@ const updateReminder = async (key: ReminderKey, selected: Date) => {
           label="Обід"
           value={reminders.lunch.time}
           onChange={(date: Date) => updateReminder("lunch", date)}
+          visibleModal={() => setActiveModal(activeModal || "lunch")}
         />
         <TabletColumn>
           {items &&
@@ -219,6 +233,7 @@ const updateReminder = async (key: ReminderKey, selected: Date) => {
           label="Вечеря"
           value={reminders.dinner.time}
           onChange={(date: Date) => updateReminder("dinner", date)}
+          visibleModal={() => setActiveModal(activeModal || "dinner")}
         />
         <TabletColumn>
           {items &&
@@ -240,6 +255,7 @@ const updateReminder = async (key: ReminderKey, selected: Date) => {
           label="Добові"
           value={reminders.night.time}
           onChange={(date: Date) => updateReminder("night", date)}
+          visibleModal={() => setActiveModal(activeModal || "night")}
         />
         <TabletColumn>
           {items &&
@@ -256,7 +272,7 @@ const updateReminder = async (key: ReminderKey, selected: Date) => {
                 />
               ))}
         </TabletColumn>
-    </ScrollView>
+      </ScrollView>
     </SafeAreaView>
   );
 }

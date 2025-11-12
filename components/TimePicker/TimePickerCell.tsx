@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { Pressable, Text, TouchableOpacity, View, useColorScheme } from "react-native";
+import {
+  Pressable,
+  Text,
+  TouchableOpacity,
+  View,
+  useColorScheme,
+} from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { Feather } from "@expo/vector-icons";
 import { darkTheme, lightTheme } from "../../styles/theme";
@@ -8,10 +14,12 @@ export default function TimePickerCell({
   label,
   value,
   onChange,
+  visibleModal,
 }: {
   label: string;
   value: Date;
   onChange: (date: Date) => void;
+  visibleModal?: () => void;
 }) {
   const [open, setOpen] = useState(false);
 
@@ -41,7 +49,7 @@ export default function TimePickerCell({
         <View style={theme.borderTabletTime}>
           <Text style={[theme.textLg, theme.primary]}>{formatTime(value)}</Text>
         </View>
-        <TouchableOpacity style={theme.borderTabletTime}>
+        <TouchableOpacity style={theme.borderTabletTime} onPress={visibleModal}>
           <Feather name="plus" size={28} color={theme.primary.color} />
         </TouchableOpacity>
       </Pressable>
