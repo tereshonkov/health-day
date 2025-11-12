@@ -7,7 +7,7 @@ export default function TabMenu({ state, descriptors, navigation }: any) {
   const colorScheme = useColorScheme();
   const theme = colorScheme === "dark" ? darkTheme : lightTheme;
   return (
-    <SafeAreaView style={{ backgroundColor: 'transparent', position: "absolute", bottom: 0 }}>
+    <SafeAreaView style={{ backgroundColor: 'transparent', position: "absolute", bottom: 0, width: "100%" }}>
       <View style={theme.tabBar}>
         {state.routes.map((route: any, index: number) => {
           const isFocused = state.index === index;

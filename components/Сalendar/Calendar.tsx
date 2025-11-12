@@ -17,7 +17,7 @@ export default function CalendarComponent() {
       }
       theme={{
         dayTextColor: theme.secondary.color,
-        todayTextColor: "#FFFFFF",
+        todayTextColor: theme === darkTheme ? "#FFA500" : "#5932EA",
         monthTextColor: theme.primary.color,
         arrowColor: theme.primary.color,
         calendarBackground: "transparent",
