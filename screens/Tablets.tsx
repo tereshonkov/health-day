@@ -1,5 +1,4 @@
-import { ScrollView, View } from "react-native";
-import { styles } from "../styles/styles";
+import { ScrollView, Text, useColorScheme } from "react-native";
 import TabletItem from "../components/TabletItem/TabletItem";
 import TabletColumn from "../components/TabletColumn/TabletColumn";
 import { useState } from "react";
@@ -8,6 +7,13 @@ import {
   scheduleNotificationSafe,
   cancelNotificationSafe,
 } from "../utils/notifications";
+import {
+  SafeAreaView,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
+import { useRef } from "react";
+import { darkTheme, lightTheme } from "../styles/theme";
+
 
 const initialItems = [
   {
@@ -121,6 +127,11 @@ export default function Tablets() {
     dinner: { time: createTimeToday(18, 0), notificationIds: [] },
     night: { time: createTimeToday(20, 0), notificationIds: [] },
   });
+  const insets = useSafeAreaInsets();
+  const scrollRef = useRef<ScrollView>(null);
+  const colorScheme = useColorScheme();
+  const theme = colorScheme === "dark" ? darkTheme : lightTheme;
+
   const handleToogle = (id: string) => {
     setItems((prevItems) =>
       prevItems.map((item) =>
@@ -157,8 +168,9 @@ const updateReminder = async (key: ReminderKey, selected: Date) => {
   }
 };
   return (
-    <ScrollView>
-      <View style={styles.container}>
+    <SafeAreaView>
+    <ScrollView ref={scrollRef} contentContainerStyle={{ paddingBottom: insets.bottom + 60, paddingTop: 20 }}>
+      <Text style={[theme.textXl, theme.primary, {textAlign: "center"}]}>Налаштуй нагадування</Text>
         <TimePickerCell
           label="Ранок"
           value={reminders.morning.time}
@@ -242,7 +254,7 @@ const updateReminder = async (key: ReminderKey, selected: Date) => {
                 />
               ))}
         </TabletColumn>
-      </View>
     </ScrollView>
+    </SafeAreaView>
   );
 }
