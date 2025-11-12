@@ -15,8 +15,7 @@ import {
   SafeAreaView,
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
-
-type colorType = "red" | "yellow" | "green" | "blue";
+import { colorType } from "../types/global";
 
 export default function Home() {
   const colorScheme = useColorScheme();
