@@ -1,4 +1,4 @@
-import { ScrollView, Text, useColorScheme } from "react-native";
+import { ScrollView, Text, useColorScheme, View } from "react-native";
 import TabletItem from "../components/TabletItem/TabletItem";
 import TabletColumn from "../components/TabletColumn/TabletColumn";
 import { useState } from "react";
@@ -175,6 +175,7 @@ export default function Tablets() {
         contentContainerStyle={{
           paddingBottom: insets.bottom + 60,
           paddingTop: 20,
+          paddingHorizontal: 20,
         }}
       >
         <Text style={[theme.textXl, theme.primary, { textAlign: "center" }]}>
@@ -185,28 +186,32 @@ export default function Tablets() {
           onClose={() => setActiveModal(null)}
           reminderKey={activeModal!}
         />
-        <TimePickerCell
-          label="Ранок"
-          value={reminders.morning.time}
-          onChange={(date: Date) => updateReminder("morning", date)}
-          visibleModal={() => setActiveModal(activeModal || "morning")}
-        />
-        <TabletColumn>
-          {items &&
-            items
-              .filter((item) => item.time === "morning")
-              .map((item) => (
-                <TabletItem
-                  key={item.id}
-                  id={item.id}
-                  title={item.title}
-                  count={item.count}
-                  onToogle={handleToogle}
-                  isTaken={item.isTaken}
-                />
-              ))}
-        </TabletColumn>
 
+        <View style={[theme.container, {marginTop: 32}]}>
+          <TimePickerCell
+            label="Ранок"
+            value={reminders.morning.time}
+            onChange={(date: Date) => updateReminder("morning", date)}
+            visibleModal={() => setActiveModal(activeModal || "morning")}
+          />
+          <TabletColumn>
+            {items &&
+              items
+                .filter((item) => item.time === "morning")
+                .map((item) => (
+                  <TabletItem
+                    key={item.id}
+                    id={item.id}
+                    title={item.title}
+                    count={item.count}
+                    onToogle={handleToogle}
+                    isTaken={item.isTaken}
+                  />
+                ))}
+          </TabletColumn>
+        </View>
+
+        <View style={[theme.container, {marginTop: 32}]}>
         <TimePickerCell
           label="Обід"
           value={reminders.lunch.time}
@@ -228,7 +233,9 @@ export default function Tablets() {
                 />
               ))}
         </TabletColumn>
+        </View>
 
+        <View style={[theme.container, {marginTop: 32}]}>
         <TimePickerCell
           label="Вечеря"
           value={reminders.dinner.time}
@@ -250,7 +257,9 @@ export default function Tablets() {
                 />
               ))}
         </TabletColumn>
+        </View>
 
+        <View style={[theme.container, {marginTop: 32}]}>
         <TimePickerCell
           label="Добові"
           value={reminders.night.time}
@@ -272,6 +281,7 @@ export default function Tablets() {
                 />
               ))}
         </TabletColumn>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );

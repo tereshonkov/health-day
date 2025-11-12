@@ -7,7 +7,7 @@ export default function TabletColumn({children}: {children: React.ReactNode}) {
   const theme = colorScheme === 'dark' ? darkTheme : lightTheme;
   return (
     <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 20}}>
-    <View style={theme.container}>
+    <View style={{gap: 20, width: '90%'}}>
         {children}
     </View>
     </View>

@@ -38,14 +38,13 @@ export default function TimePickerCell({
         alignItems: "center",
         gap: 10,
         justifyContent: "center",
-        marginTop: 32,
       }}
     >
       <Pressable
         style={{ flexDirection: "row", gap: 10, alignItems: "center" }}
         onPress={() => setOpen(true)}
       >
-        <Text style={[theme.textLg, theme.primary]}>{label}</Text>
+        <Text style={[theme.textXl, theme.primary]}>{label}</Text>
         <View style={theme.borderTabletTime}>
           <Text style={[theme.textLg, theme.primary]}>{formatTime(value)}</Text>
         </View>
