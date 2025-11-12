@@ -131,7 +131,7 @@ export const lightTheme = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#FFFFFFA4",
   },
-    borderTabletTime: {
+  borderTabletTime: {
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderWidth: 1,
@@ -139,7 +139,7 @@ export const lightTheme = StyleSheet.create({
     borderRadius: 20,
   },
 
-      item: {
+  item: {
     padding: 10,
     borderWidth: 1,
     borderColor: "#364A5F",
@@ -298,10 +298,10 @@ export const darkTheme = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderWidth: 1,
-    borderColor: "#364A5F",
+    borderColor: "#59CECF",
     borderRadius: 20,
   },
-    item: {
+  item: {
     padding: 10,
     borderWidth: 1,
     borderColor: "#59CECF",
