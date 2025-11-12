@@ -14,6 +14,7 @@ import {
 import { useRef } from "react";
 import { darkTheme, lightTheme } from "../styles/theme";
 import ModalItem from "../components/Modal/Modal";
+import { ReminderKey, ReminderEntry, ReminderState } from "../types/global";
 
 const initialItems = [
   {
@@ -114,10 +115,6 @@ const createTimeToday = (hour: number, minute: number) => {
     0
   );
 };
-
-type ReminderKey = "morning" | "lunch" | "dinner" | "night";
-type ReminderEntry = { time: Date; notificationIds: string[] };
-type ReminderState = Record<ReminderKey, ReminderEntry>;
 
 export default function Tablets() {
   const [items, setItems] = useState(initialItems);
