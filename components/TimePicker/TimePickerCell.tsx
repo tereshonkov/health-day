@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Pressable, Text, TouchableOpacity, View } from "react-native";
+import { Pressable, Text, TouchableOpacity, View, useColorScheme } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import { styles } from "../../styles/styles";
 import { Feather } from "@expo/vector-icons";
+import { darkTheme, lightTheme } from "../../styles/theme";
 
 export default function TimePickerCell({
   label,
@@ -20,6 +20,9 @@ export default function TimePickerCell({
       date.getMinutes()
     ).padStart(2, "0")}`;
 
+  const colorScheme = useColorScheme();
+  const theme = colorScheme === "dark" ? darkTheme : lightTheme;
+
   return (
     <View
       style={{
@@ -34,12 +37,12 @@ export default function TimePickerCell({
         style={{ flexDirection: "row", gap: 10, alignItems: "center" }}
         onPress={() => setOpen(true)}
       >
-        <Text style={styles.textLg}>{label}</Text>
-        <View style={{ paddingHorizontal: 12, paddingVertical: 6, borderWidth: 1, borderColor: "#364A5F", borderRadius: 20 }}>
-          <Text style={styles.textLg}>{formatTime(value)}</Text>
+        <Text style={[theme.textLg, theme.primary]}>{label}</Text>
+        <View style={theme.borderTabletTime}>
+          <Text style={[theme.textLg, theme.primary]}>{formatTime(value)}</Text>
         </View>
-        <TouchableOpacity style={{ paddingHorizontal: 12, paddingVertical: 6, borderWidth: 1, borderColor: "#364A5F", borderRadius: 20 }}>
-          <Feather name="plus" size={28} color="#59CECF" />
+        <TouchableOpacity style={theme.borderTabletTime}>
+          <Feather name="plus" size={28} color={theme.primary.color} />
         </TouchableOpacity>
       </Pressable>
       <DateTimePickerModal

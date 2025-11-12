@@ -13,6 +13,7 @@ import {
 } from "react-native-safe-area-context";
 import { useRef } from "react";
 import { darkTheme, lightTheme } from "../styles/theme";
+import ModalItem from "../components/Modal/Modal";
 
 
 const initialItems = [
@@ -171,6 +172,7 @@ const updateReminder = async (key: ReminderKey, selected: Date) => {
     <SafeAreaView>
     <ScrollView ref={scrollRef} contentContainerStyle={{ paddingBottom: insets.bottom + 60, paddingTop: 20 }}>
       <Text style={[theme.textXl, theme.primary, {textAlign: "center"}]}>Налаштуй нагадування</Text>
+      <ModalItem isVisible={true} onClose={() => {}} />
         <TimePickerCell
           label="Ранок"
           value={reminders.morning.time}

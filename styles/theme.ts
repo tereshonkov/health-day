@@ -131,6 +131,40 @@ export const lightTheme = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#FFFFFFA4",
   },
+    borderTabletTime: {
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderWidth: 1,
+    borderColor: "#20558FFF",
+    borderRadius: 20,
+  },
+
+      item: {
+    padding: 10,
+    borderWidth: 1,
+    borderColor: "#364A5F",
+    borderRadius: 20,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "100%",
+    backgroundColor: "#F8FFFDA5",
+  },
+  text: {
+    fontSize: 18,
+    color: "#59CECF",
+    width: "40%",
+  },
+  count: {
+    fontSize: 20,
+    color: "#59CECF",
+  },
+  btnItem: {
+    padding: 10,
+    backgroundColor: "#5932EA",
+    borderRadius: 10,
+    alignItems: "center",
+  },
 });
 
 export const darkTheme = StyleSheet.create({
@@ -259,5 +293,38 @@ export const darkTheme = StyleSheet.create({
     borderColor: "#59CECF",
     width: "90%",
     alignSelf: "center",
+  },
+  borderTabletTime: {
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderWidth: 1,
+    borderColor: "#364A5F",
+    borderRadius: 20,
+  },
+    item: {
+    padding: 10,
+    borderWidth: 1,
+    borderColor: "#59CECF",
+    borderRadius: 20,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "100%",
+    backgroundColor: "#42454558",
+  },
+  text: {
+    fontSize: 18,
+    color: "#59CECF",
+    width: "40%",
+  },
+  count: {
+    fontSize: 20,
+    color: "#59CECF",
+  },
+  btnItem: {
+    padding: 10,
+    backgroundColor: "#59CECF",
+    borderRadius: 10,
+    alignItems: "center",
   },
 });
