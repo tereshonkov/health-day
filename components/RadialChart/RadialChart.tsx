@@ -39,7 +39,7 @@ export default function PulseChart({ pulse, maxPulse = 150 }: PulseChartProps) {
           cx={size / 2}
           cy={size / 2}
           r={radius}
-          stroke={theme.primary.color}
+          stroke={theme.secondary.color}
           strokeWidth={strokeWidth}
           fill="none"
           strokeDasharray={`${circumference} ${circumference}`}
@@ -53,7 +53,7 @@ export default function PulseChart({ pulse, maxPulse = 150 }: PulseChartProps) {
           x={size / 2}
           y={size / 2 + 5} // чуть смещаем вниз, чтобы центрировалось визуально
           fontSize="20"
-          fill={theme.primary.color}
+          fill={theme.secondary.color}
           textAnchor="middle"
         >
           {pulse}

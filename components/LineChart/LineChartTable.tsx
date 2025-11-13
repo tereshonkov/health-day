@@ -35,7 +35,7 @@ export default function LineChartTable() {
                   y={svgHeight - barHeight}
                   width={barWidth}
                   height={barHeight}
-                  fill={theme.primary.color}
+                  fill={theme.secondary.color}
                   rx={16}
                 />
                 {/* Цифра сверху */}
@@ -43,7 +43,7 @@ export default function LineChartTable() {
                   x={x + barWidth / 2} // по центру столбца
                   y={svgHeight - barHeight - 5} // чуть выше столбца
                   fontSize="12"
-                  fill={theme.primary.color} // цвет текста
+                  fill={theme.secondary.color} // цвет текста
                   textAnchor="middle" // центрируем по горизонтали
                 >
                   {value}

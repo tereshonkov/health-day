@@ -174,7 +174,7 @@ export const darkTheme = StyleSheet.create({
   container: {
     paddingVertical: 16,
     paddingHorizontal: 10,
-    backgroundColor: "#115C6FA2",
+    backgroundColor: "#115c6f5b",
     borderWidth: 1,
     borderColor: "#59CECFA4",
     borderRadius: 20,
@@ -203,7 +203,8 @@ export const darkTheme = StyleSheet.create({
     color: "#59CECF",
   },
   secondary: {
-    color: "#59CECF",
+    // color: "#59CECF",
+        color: "#FFFFFF",
   },
   popupBlue: {
     backgroundColor: "#0F3DB4A6",

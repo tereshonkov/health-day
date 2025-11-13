@@ -1,4 +1,11 @@
-import { Keyboard, Pressable, ScrollView, Text, View } from "react-native";
+import {
+  Keyboard,
+  Pressable,
+  ScrollView,
+  Text,
+  View,
+  Image,
+} from "react-native";
 import { useRef } from "react";
 import Pressure from "../components/Pressure/Pressure";
 import Button from "../components/Button/Button";
@@ -22,19 +29,19 @@ import Line from "../components/Line/Line";
 const images = [
   {
     src: require("../assets/statisticks.jpg"),
-    text: "Переглядай статистику"
+    text: "Переглядай статистику",
   },
   {
     src: require("../assets/download-pdf.jpg"),
-    text: "Завантажуй звіти"
+    text: "Завантажуй звіти",
   },
   {
     src: require("../assets/ai.jpg"),
-    text: "Використовуй AI"
+    text: "Використовуй AI",
   },
   {
     src: require("../assets/shelude-time.jpg"),
-    text: "Плануй свій час"
+    text: "Плануй свій час",
   },
 ];
 
@@ -72,6 +79,7 @@ export default function Home() {
           justifyContent: "flex-start",
           flexGrow: 1,
           paddingBottom: insets.bottom + 30,
+          marginTop: insets.top + 20,
         }}
         style={{ backgroundColor: "transparent" }}
         keyboardShouldPersistTaps="handled"
@@ -86,7 +94,13 @@ export default function Home() {
           }}
           onPress={Keyboard.dismiss}
         >
-          <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
+          <View
+            style={{
+              flexDirection: "row",
+              flexWrap: "wrap",
+              justifyContent: "center",
+            }}
+          >
             {images.map((img, index) => (
               <ImageCard key={index} srcImage={img.src} text={img.text} />
             ))}
@@ -94,13 +108,22 @@ export default function Home() {
 
           <Line />
 
-          <Text style={[theme.textXl, theme.primary]}>
-            Переглядай статистику
+          <Text style={[theme.textXl, theme.secondary]}>
+            статистика
           </Text>
           <LineChartTable />
           <TableTime />
           <RadialChart pulse={pulse ? parseInt(pulse) : 60} />
-          <Text style={[theme.textXl, theme.primary]}>Збережи свої дані</Text>
+          <Line />
+          <View style={{ marginBottom: 16, width: "100%", gap: 32, alignItems: "center", justifyContent: "center" }}>
+            <Image
+              source={require("../assets/checklist-advanced.jpg")}
+              style={{ width: "100%", height: 200, borderRadius: 20 }}
+            />
+            <Button onPress={() => {}}>Переглянути тарифи</Button>
+          </View>
+          <Line />
+          <Text style={[theme.textXl, theme.secondary]}>Збережи свої дані</Text>
           <Pressure
             pressure={pressure}
             setPressure={setPressure}

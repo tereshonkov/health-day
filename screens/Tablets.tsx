@@ -173,6 +173,7 @@ export default function Tablets() {
           paddingBottom: insets.bottom + 60,
           paddingTop: 20,
           paddingHorizontal: 20,
+          marginTop: insets.top + 10,
         }}
       >
         <Text style={[theme.textXl, theme.primary, { textAlign: "center" }]}>
@@ -184,7 +185,7 @@ export default function Tablets() {
           reminderKey={activeModal!}
         />
 
-        <View style={[theme.container, {marginTop: 32}]}>
+        <View style={[theme.container, { marginTop: 32 }]}>
           <TimePickerCell
             label="Ранок"
             value={reminders.morning.time}
@@ -208,76 +209,76 @@ export default function Tablets() {
           </TabletColumn>
         </View>
 
-        <View style={[theme.container, {marginTop: 32}]}>
-        <TimePickerCell
-          label="Обід"
-          value={reminders.lunch.time}
-          onChange={(date: Date) => updateReminder("lunch", date)}
-          visibleModal={() => setActiveModal(activeModal || "lunch")}
-        />
-        <TabletColumn>
-          {items &&
-            items
-              .filter((item) => item.time === "lunch")
-              .map((item) => (
-                <TabletItem
-                  key={item.id}
-                  id={item.id}
-                  title={item.title}
-                  count={item.count}
-                  onToogle={handleToogle}
-                  isTaken={item.isTaken}
-                />
-              ))}
-        </TabletColumn>
+        <View style={[theme.container, { marginTop: 32 }]}>
+          <TimePickerCell
+            label="Обід"
+            value={reminders.lunch.time}
+            onChange={(date: Date) => updateReminder("lunch", date)}
+            visibleModal={() => setActiveModal(activeModal || "lunch")}
+          />
+          <TabletColumn>
+            {items &&
+              items
+                .filter((item) => item.time === "lunch")
+                .map((item) => (
+                  <TabletItem
+                    key={item.id}
+                    id={item.id}
+                    title={item.title}
+                    count={item.count}
+                    onToogle={handleToogle}
+                    isTaken={item.isTaken}
+                  />
+                ))}
+          </TabletColumn>
         </View>
 
-        <View style={[theme.container, {marginTop: 32}]}>
-        <TimePickerCell
-          label="Вечеря"
-          value={reminders.dinner.time}
-          onChange={(date: Date) => updateReminder("dinner", date)}
-          visibleModal={() => setActiveModal(activeModal || "dinner")}
-        />
-        <TabletColumn>
-          {items &&
-            items
-              .filter((item) => item.time === "dinner")
-              .map((item) => (
-                <TabletItem
-                  key={item.id}
-                  id={item.id}
-                  title={item.title}
-                  count={item.count}
-                  onToogle={handleToogle}
-                  isTaken={item.isTaken}
-                />
-              ))}
-        </TabletColumn>
+        <View style={[theme.container, { marginTop: 32 }]}>
+          <TimePickerCell
+            label="Вечеря"
+            value={reminders.dinner.time}
+            onChange={(date: Date) => updateReminder("dinner", date)}
+            visibleModal={() => setActiveModal(activeModal || "dinner")}
+          />
+          <TabletColumn>
+            {items &&
+              items
+                .filter((item) => item.time === "dinner")
+                .map((item) => (
+                  <TabletItem
+                    key={item.id}
+                    id={item.id}
+                    title={item.title}
+                    count={item.count}
+                    onToogle={handleToogle}
+                    isTaken={item.isTaken}
+                  />
+                ))}
+          </TabletColumn>
         </View>
 
-        <View style={[theme.container, {marginTop: 32}]}>
-        <TimePickerCell
-          label="Добові"
-          value={reminders.night.time}
-          onChange={(date: Date) => updateReminder("night", date)}
-          visibleModal={() => setActiveModal(activeModal || "night")}
-        />
-        <TabletColumn>
-          {items &&
-            items
-              .filter((item) => item.time === "night")
-              .map((item) => (
-                <TabletItem
-                  key={item.id}
-                  id={item.id}
-                  title={item.title}
-                  count={item.count}
-                  onToogle={handleToogle}
-                  isTaken={item.isTaken}
-                />
-              ))}
-        </TabletColumn>
+        <View style={[theme.container, { marginTop: 32 }]}>
+          <TimePickerCell
+            label="Добові"
+            value={reminders.night.time}
+            onChange={(date: Date) => updateReminder("night", date)}
+            visibleModal={() => setActiveModal(activeModal || "night")}
+          />
+          <TabletColumn>
+            {items &&
+              items
+                .filter((item) => item.time === "night")
+                .map((item) => (
+                  <TabletItem
+                    key={item.id}
+                    id={item.id}
+                    title={item.title}
+                    count={item.count}
+                    onToogle={handleToogle}
+                    isTaken={item.isTaken}
+                  />
+                ))}
+          </TabletColumn>
         </View>
       </ScrollView>
     </SafeAreaView>

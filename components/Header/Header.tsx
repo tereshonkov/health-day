@@ -9,8 +9,8 @@ export default function Header() {
   console.log(colorScheme);
   
   return (
-    <SafeAreaView style={{ backgroundColor: 'transparent' }}>
-      <View style={{justifyContent: "space-between", alignItems: "center", flexDirection: "row", paddingHorizontal: 16, paddingVertical: 10}}>
+    <SafeAreaView style={{ backgroundColor: 'transparent', position: "absolute", top: 0, width: "100%", zIndex: 1000 }}>
+      <View style={{justifyContent: "space-between", alignItems: "center", flexDirection: "row", paddingHorizontal: 16, paddingVertical: 10, height: 60}}>
         <View style={theme.circleHeader}></View>
         <TouchableOpacity style={theme.btnVersion}>
           <Text style={theme.textSm}>Pro version</Text>
