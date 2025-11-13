@@ -16,7 +16,7 @@ export default function Button({
       style={({ pressed }) => [theme, pressed && styles.buttonPressed]}
       onPress={onPress}
     >
-      <Text style={{color: "#FFFFFF", fontWeight: "bold", textTransform: "uppercase", fontSize: 22}}>{children}</Text>
+      <Text style={{color: "#FFFFFF", fontWeight: "bold", textTransform: "uppercase", fontSize: 18}}>{children}</Text>
     </Pressable>
   );
 }

@@ -246,11 +246,11 @@ export const darkTheme = StyleSheet.create({
   },
   btn: {
     width: 262,
-    height: 89,
+    height: 56,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 20,
-    fontSize: 22,
+    fontSize: 18,
     backgroundColor: "#59CECF",
   },
   btnVersion: {

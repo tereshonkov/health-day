@@ -1,4 +1,4 @@
-import { Keyboard, Pressable, ScrollView, Text } from "react-native";
+import { Keyboard, Pressable, ScrollView, Text, View } from "react-native";
 import { useRef } from "react";
 import Pressure from "../components/Pressure/Pressure";
 import Button from "../components/Button/Button";
@@ -16,6 +16,27 @@ import {
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
 import { colorType } from "../types/global";
+import ImageCard from "../components/ImageCard/ImageCard";
+import Line from "../components/Line/Line";
+
+const images = [
+  {
+    src: require("../assets/statisticks.jpg"),
+    text: "Переглядай статистику"
+  },
+  {
+    src: require("../assets/download-pdf.jpg"),
+    text: "Завантажуй звіти"
+  },
+  {
+    src: require("../assets/ai.jpg"),
+    text: "Використовуй AI"
+  },
+  {
+    src: require("../assets/shelude-time.jpg"),
+    text: "Плануй час"
+  },
+];
 
 export default function Home() {
   const colorScheme = useColorScheme();
@@ -65,7 +86,17 @@ export default function Home() {
           }}
           onPress={Keyboard.dismiss}
         >
-          <Text style={[theme.textXl, theme.primary]}>Переглядай статистику</Text>
+          <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: "center" }}>
+            {images.map((img, index) => (
+              <ImageCard key={index} srcImage={img.src} text={img.text} />
+            ))}
+          </View>
+
+          <Line />
+          
+          <Text style={[theme.textXl, theme.primary]}>
+            Переглядай статистику
+          </Text>
           <LineChartTable />
           <TableTime />
           <RadialChart pulse={pulse ? parseInt(pulse) : 60} />
