@@ -34,7 +34,7 @@ const images = [
   },
   {
     src: require("../assets/shelude-time.jpg"),
-    text: "Плануй час"
+    text: "Плануй свій час"
   },
 ];
 
@@ -93,7 +93,7 @@ export default function Home() {
           </View>
 
           <Line />
-          
+
           <Text style={[theme.textXl, theme.primary]}>
             Переглядай статистику
           </Text>
