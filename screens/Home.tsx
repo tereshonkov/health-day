@@ -26,6 +26,7 @@ import { colorType } from "../types/global";
 import ImageCard from "../components/ImageCard/ImageCard";
 import Line from "../components/Line/Line";
 import Carusel from "../components/Carusel/Carusel";
+import { postPressure } from "../api/pressure";
 
 const images = [
   {
@@ -58,6 +59,11 @@ export default function Home() {
 
   const handleOnChange = () => {
     console.log(pressure, pulse);
+    postPressure({
+      userId: "b38bc783-4398-4489-b172-692450ceef51",
+      pressure: pressure,
+      pulse: parseInt(pulse),
+    });
     const color = getColor.getColor(pressure, pulse);
     console.log("Колір показань:", color);
     if (pressure && pulse) {
