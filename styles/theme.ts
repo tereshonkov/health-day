@@ -253,6 +253,7 @@ export const darkTheme = StyleSheet.create({
     borderRadius: 20,
     fontSize: 18,
     backgroundColor: "#59CECF",
+    zIndex: 10000,
   },
   btnVersion: {
     paddingVertical: 12,

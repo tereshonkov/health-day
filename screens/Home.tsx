@@ -25,6 +25,7 @@ import {
 import { colorType } from "../types/global";
 import ImageCard from "../components/ImageCard/ImageCard";
 import Line from "../components/Line/Line";
+import Carusel from "../components/Carusel/Carusel";
 
 const images = [
   {
@@ -36,7 +37,7 @@ const images = [
     text: "Завантажуй звіти",
   },
   {
-    src: require("../assets/ai.jpg"),
+    src: require("../assets/analize.jpg"),
     text: "Використовуй AI",
   },
   {
@@ -78,7 +79,7 @@ export default function Home() {
         contentContainerStyle={{
           justifyContent: "flex-start",
           flexGrow: 1,
-          paddingBottom: insets.bottom + 30,
+          paddingBottom: insets.bottom + 60,
           marginTop: insets.top + 20,
         }}
         style={{ backgroundColor: "transparent" }}
@@ -116,10 +117,11 @@ export default function Home() {
           <RadialChart pulse={pulse ? parseInt(pulse) : 60} />
           <Line />
           <View style={{ marginBottom: 16, width: "100%", gap: 32, alignItems: "center", justifyContent: "center" }}>
-            <Image
+            {/* <Image
               source={require("../assets/checklist-advanced.jpg")}
               style={{ width: "100%", height: 200, borderRadius: 20 }}
-            />
+            /> */}
+            <Carusel />
             <Button onPress={() => {}}>Переглянути тарифи</Button>
           </View>
           <Line />

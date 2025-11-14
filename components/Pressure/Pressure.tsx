@@ -37,6 +37,7 @@ export default function Pressure({pressure, setPressure, pulse, setPulse}: any) 
           gap: 10,
           marginRight: 16,
           marginLeft: 16,
+          zIndex: 10000,
         }}
       >
         <Text style={[theme.textLg, theme.secondary]}>Тиск</Text>
