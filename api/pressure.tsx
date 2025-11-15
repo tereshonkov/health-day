@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://192.168.1.185:3000";
+const API_URL = "http://192.168.0.152:3000";
 
 type PressureData = {
   userId: string;
@@ -10,10 +10,12 @@ type PressureData = {
 
 export const postPressure = async (data: PressureData) => {
   try {
-    const response = await axios.post(`${API_URL}/pressure/create`, data);
+    const response = await axios.post(`${API_URL}/pressure/create`, data, {
+      validateStatus: () => true,
+    });
     return response.data;
   } catch (error) {
     console.error("Ошибка отправки данных с главной страницы!", error);
-    throw error;
+    return { success: false };
   }
 };

@@ -5,6 +5,7 @@ import {
   Text,
   View,
   Image,
+  ActivityIndicator,
 } from "react-native";
 import { useRef } from "react";
 import Pressure from "../components/Pressure/Pressure";
@@ -27,6 +28,7 @@ import ImageCard from "../components/ImageCard/ImageCard";
 import Line from "../components/Line/Line";
 import Carusel from "../components/Carusel/Carusel";
 import { postPressure } from "../api/pressure";
+import Toast from "react-native-toast-message";
 
 const images = [
   {
@@ -56,14 +58,33 @@ export default function Home() {
   const [popupColor, setPopupColor] = useState<colorType>("green");
   const scrollRef = useRef<ScrollView>(null);
   const insets = useSafeAreaInsets();
+  const [loading, setLoading] = useState(false);
 
-  const handleOnChange = () => {
+  const handleOnChange = async () => {
+    setLoading(true);
     console.log(pressure, pulse);
-    postPressure({
-      userId: "b38bc783-4398-4489-b172-692450ceef51",
-      pressure: pressure,
-      pulse: parseInt(pulse),
-    });
+    try {
+      const res = await postPressure({
+        userId: "b38bc783-4398-4489-b172-692450ceef51",
+        pressure: pressure,
+        pulse: parseInt(pulse, 10),
+      });
+
+      console.log("Ответ API:", res);
+
+      if (res?.id) {
+        Toast.show({ type: "success", text1: "Дані успішно збережено!" });
+      } else if (res?.error) {
+        Toast.show({ type: "error", text1: "Помилка мережі." });
+      } else {
+        Toast.show({ type: "error", text1: "Помилка при збереженні даних." });
+      }
+    } catch (error) {
+      Toast.show({
+        type: "error",
+        text1: "Помилка мережі.",
+      });
+    }
     const color = getColor.getColor(pressure, pulse);
     console.log("Колір показань:", color);
     if (pressure && pulse) {
@@ -76,6 +97,7 @@ export default function Home() {
     setTimeout(() => {
       scrollRef.current?.scrollToEnd({ animated: true });
     }, 50);
+    setLoading(false);
   };
 
   return (
@@ -85,7 +107,7 @@ export default function Home() {
         contentContainerStyle={{
           justifyContent: "flex-start",
           flexGrow: 1,
-          paddingBottom: insets.bottom + 60,
+          paddingBottom: insets.bottom + 100,
           marginTop: insets.top + 20,
         }}
         style={{ backgroundColor: "transparent" }}
@@ -101,7 +123,7 @@ export default function Home() {
           }}
           onPress={Keyboard.dismiss}
         >
-          <View
+          {/* <View
             style={{
               flexDirection: "row",
               flexWrap: "wrap",
@@ -113,24 +135,30 @@ export default function Home() {
             ))}
           </View>
 
-          <Line />
+          <Line /> */}
 
-          <Text style={[theme.textXl, theme.secondary]}>
-            статистика
-          </Text>
+          <Text style={[theme.textXl, theme.secondary]}>статистика</Text>
           <LineChartTable />
           <TableTime />
           <RadialChart pulse={pulse ? parseInt(pulse) : 60} />
-          <Line />
-          <View style={{ marginBottom: 16, width: "100%", gap: 32, alignItems: "center", justifyContent: "center" }}>
+          {/* <Line /> */}
+          <View
+            style={{
+              marginBottom: 16,
+              width: "100%",
+              gap: 32,
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
             {/* <Image
               source={require("../assets/checklist-advanced.jpg")}
               style={{ width: "100%", height: 200, borderRadius: 20 }}
             /> */}
-            <Carusel />
-            <Button onPress={() => {}}>Переглянути тарифи</Button>
+            {/* <Carusel />
+            <Button onPress={() => {}}>Переглянути тарифи</Button> */}
           </View>
-          <Line />
+          {/* <Line /> */}
           <Text style={[theme.textXl, theme.secondary]}>Збережи свої дані</Text>
           <Pressure
             pressure={pressure}
@@ -139,7 +167,8 @@ export default function Home() {
             setPulse={setPulse}
           />
           <Button onPress={handleOnChange}>Зберегти</Button>
-          {popupVisible && <Popup color={popupColor} />}
+          {loading && <ActivityIndicator size="large" color="#FFFFFF" />}
+          {/* {popupVisible && <Popup color={popupColor} />} */}
           {popupVisible && (
             <CardContainer>
               <Text
