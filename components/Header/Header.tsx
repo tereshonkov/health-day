@@ -10,10 +10,10 @@ export default function Header() {
   
   return (
     <SafeAreaView style={{ backgroundColor: 'transparent', position: "absolute", top: 0, width: "100%", zIndex: 1000 }}>
-      <View style={{justifyContent: "space-between", alignItems: "center", flexDirection: "row", paddingHorizontal: 16, paddingVertical: 10, height: 60}}>
-        <View style={theme.circleHeader}></View>
+      <View style={{justifyContent: "space-between", alignItems: "center", flexDirection: "row", paddingHorizontal: 16, paddingVertical: 10, height: 160}}>
+        {/* <View style={theme.circleHeader}></View> */}
         <TouchableOpacity style={theme.btnVersion}>
-          <Text style={theme.textSm}>Pro version</Text>
+          <Text style={theme.textSm}>Приложение для моей любимой</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

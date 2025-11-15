@@ -35,12 +35,12 @@ export default function AppNavigator() {
                 <Tab.Screen name="Tablets" component={Tablets} options={{
                     icon: getIcon(require("../assets/tabletsLight.png"), require("../assets/tablets.png"))
                 } as any}/>
-                <Tab.Screen name="Chat" component={Chat} options={{
+                {/* <Tab.Screen name="Chat" component={Chat} options={{
                     icon: getIcon(require("../assets/chatLight.png"), require("../assets/chat.png"))
                 } as any}/>
                 <Tab.Screen name="Settings" component={Settings} options={{
                     icon: getIcon(require("../assets/settingsLight.png"), require("../assets/settings.png"))
-                } as any}/>
+                } as any}/> */}
             </Tab.Navigator>
         </NavigationContainer>
     )
