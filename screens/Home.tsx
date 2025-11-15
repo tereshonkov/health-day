@@ -62,15 +62,12 @@ export default function Home() {
 
   const handleOnChange = async () => {
     setLoading(true);
-    console.log(pressure, pulse);
     try {
       const res = await postPressure({
         userId: "b38bc783-4398-4489-b172-692450ceef51",
         pressure: pressure,
         pulse: parseInt(pulse, 10),
       });
-
-      console.log("Ответ API:", res);
 
       if (res?.id) {
         Toast.show({ type: "success", text1: "Дані успішно збережено!" });
