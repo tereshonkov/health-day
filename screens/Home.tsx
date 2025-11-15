@@ -7,7 +7,7 @@ import {
   Image,
   ActivityIndicator,
 } from "react-native";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import Pressure from "../components/Pressure/Pressure";
 import Button from "../components/Button/Button";
 import { useState } from "react";
@@ -27,8 +27,9 @@ import { colorType } from "../types/global";
 import ImageCard from "../components/ImageCard/ImageCard";
 import Line from "../components/Line/Line";
 import Carusel from "../components/Carusel/Carusel";
-import { postPressure } from "../api/pressure";
+import { postPressure, handlePulse } from "../api/pressure";
 import Toast from "react-native-toast-message";
+import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
 
 const images = [
   {
@@ -59,6 +60,21 @@ export default function Home() {
   const scrollRef = useRef<ScrollView>(null);
   const insets = useSafeAreaInsets();
   const [loading, setLoading] = useState(false);
+  const [correctPulse, setCorrectPulse] = useState<number>(0);
+
+  useEffect(() => {
+    const getPulse = async () => {
+      const data = await handlePulse("b38bc783-4398-4489-b172-692450ceef51");
+  
+      // Проверяем, что массив не пустой
+      if (Array.isArray(data) && data.length > 0) {
+        setCorrectPulse(data[0].pulse); // берём поле pulse первого элемента
+      } else {
+        setCorrectPulse(0); // или 0, если хочешь по умолчанию
+      }
+    };
+    getPulse();
+  }, []);
 
   const handleOnChange = async () => {
     setLoading(true);
@@ -137,7 +153,7 @@ export default function Home() {
           <Text style={[theme.textXl, theme.secondary]}>статистика</Text>
           <LineChartTable />
           <TableTime />
-          <RadialChart pulse={pulse ? parseInt(pulse) : 60} />
+          <RadialChart pulse={correctPulse} />
           {/* <Line /> */}
           <View
             style={{
@@ -166,15 +182,24 @@ export default function Home() {
           <Button onPress={handleOnChange}>Зберегти</Button>
           {loading && <ActivityIndicator size="large" color="#FFFFFF" />}
           {/* {popupVisible && <Popup color={popupColor} />} */}
-          {popupVisible && (
+          {/* {popupVisible && (
             <CardContainer>
               <Text
                 style={[theme.textSm, theme.secondary, { fontWeight: "bold" }]}
               >
-                Цей застосунок створено для найдорожчої людини в моєму житті. Кохаю тебе безмежно!
+                Трохи відпочинь і розслабся. Пий воду, щоб підтримувати сили.
+                Якщо стане гірше — звернися до лікаря.
               </Text>
             </CardContainer>
-          )}
+          )} */}
+          <CardContainer>
+            <Text
+              style={[theme.textSm, theme.secondary, { fontWeight: "bold" }]}
+            >
+              Цей застосунок створено для найдорожчої людини в моєму житті.
+              Кохаю тебе безмежно!
+            </Text>
+          </CardContainer>
         </Pressable>
       </ScrollView>
     </SafeAreaView>

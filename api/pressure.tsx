@@ -18,6 +18,19 @@ type PdfRequestData = {
   date: string[];
 }
 
+export const handlePulse = async (userId: string) => {
+  try {
+    const response = await axios.get(
+      `${API_URL}/pressure/${userId}/all-records`,
+      { validateStatus: () => true }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Ошибка получения пульса!", error);
+    return { success: false };
+  }
+}
+
 export const postPressure = async (data: PressureData) => {
   try {
     const response = await axios.post(`${API_URL}/pressure/create`, data, {
