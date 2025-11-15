@@ -29,7 +29,11 @@ import Line from "../components/Line/Line";
 import Carusel from "../components/Carusel/Carusel";
 import { postPressure, handlePulse } from "../api/pressure";
 import Toast from "react-native-toast-message";
-import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
+
+type PressureRecord = {
+  pressure: string; // например '155/55'
+  pulse: number;
+};
 
 const images = [
   {
@@ -61,14 +65,24 @@ export default function Home() {
   const insets = useSafeAreaInsets();
   const [loading, setLoading] = useState(false);
   const [correctPulse, setCorrectPulse] = useState<number>(0);
+  const [dataPressable, setDataPressable] = useState<number[]>();
 
   useEffect(() => {
     const getPulse = async () => {
       const data = await handlePulse("b38bc783-4398-4489-b172-692450ceef51");
-  
+      // Берём последние 7 записей
+      const last7 = data.slice(0, 7);
+
+      const systolicArray = last7.map((record: PressureRecord) => {
+        // Берём только число до '/'
+        const [systolic] = record.pressure.split("/");
+        return Number(systolic) || 0; // превращаем в число
+      });
+      setDataPressable(systolicArray);
       // Проверяем, что массив не пустой
       if (Array.isArray(data) && data.length > 0) {
         setCorrectPulse(data[0].pulse); // берём поле pulse первого элемента
+        console.log("Полученный пульс:", data[0].pulse);
       } else {
         setCorrectPulse(0); // или 0, если хочешь по умолчанию
       }
@@ -121,7 +135,7 @@ export default function Home() {
           justifyContent: "flex-start",
           flexGrow: 1,
           paddingBottom: insets.bottom + 100,
-          marginTop: insets.top + 20,
+          marginTop: insets.top,
         }}
         style={{ backgroundColor: "transparent" }}
         keyboardShouldPersistTaps="handled"
@@ -151,7 +165,7 @@ export default function Home() {
           <Line /> */}
 
           <Text style={[theme.textXl, theme.secondary]}>статистика</Text>
-          <LineChartTable />
+          <LineChartTable data={dataPressable || []}/>
           <TableTime />
           <RadialChart pulse={correctPulse} />
           {/* <Line /> */}
@@ -194,7 +208,11 @@ export default function Home() {
           )} */}
           <CardContainer>
             <Text
-              style={[theme.textSm, theme.secondary, { fontWeight: "bold" }]}
+              style={[
+                theme.textSm,
+                theme.secondary,
+                { fontWeight: "bold", textAlign: "center" },
+              ]}
             >
               Цей застосунок створено для найдорожчої людини в моєму житті.
               Кохаю тебе безмежно!

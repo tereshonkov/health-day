@@ -24,6 +24,10 @@ export const handlePulse = async (userId: string) => {
       `${API_URL}/pressure/${userId}/all-records`,
       { validateStatus: () => true }
     );
+    if (response.status !== 200) {
+      console.error("Ошибка ответа от сервера при получении пульса:", response.status);
+      return { success: false };
+    }
     return response.data;
   } catch (error) {
     console.error("Ошибка получения пульса!", error);
