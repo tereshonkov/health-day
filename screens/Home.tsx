@@ -171,8 +171,7 @@ export default function Home() {
               <Text
                 style={[theme.textSm, theme.secondary, { fontWeight: "bold" }]}
               >
-                Трохи відпочинь і розслабся. Пий воду, щоб підтримувати сили.
-                Якщо стане гірше — звернися до лікаря.
+                Цей застосунок створено для найдорожчої людини в моєму житті. Кохаю тебе безмежно!
               </Text>
             </CardContainer>
           )}
