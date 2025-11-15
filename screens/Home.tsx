@@ -71,7 +71,9 @@ export default function Home() {
     const getPulse = async () => {
       const data = await handlePulse("b38bc783-4398-4489-b172-692450ceef51");
       // Берём последние 7 записей
-      const last7 = data.slice(0, 7);
+      const lastDay = data.length;
+      const startDay = lastDay  - 7;
+      const last7 = data.slice(startDay, lastDay);
 
       const systolicArray = last7.map((record: PressureRecord) => {
         // Берём только число до '/'
@@ -166,7 +168,7 @@ export default function Home() {
 
           <Text style={[theme.textXl, theme.secondary]}>статистика</Text>
           <LineChartTable data={dataPressable || []}/>
-          <TableTime />
+          {/* <TableTime /> */}
           <RadialChart pulse={correctPulse} />
           {/* <Line /> */}
           <View
