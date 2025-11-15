@@ -126,6 +126,9 @@ export default function Home() {
     }, 50);
     setLoading(false);
   };
+  if (dataPressable === undefined) {
+    return null;
+  }
 
   return (
     <SafeAreaView>
