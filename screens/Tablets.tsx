@@ -170,7 +170,7 @@ export default function Tablets() {
       <ScrollView
         ref={scrollRef}
         contentContainerStyle={{
-          paddingBottom: insets.bottom + 60,
+          paddingBottom: insets.bottom + 120,
           paddingTop: 20,
           paddingHorizontal: 20,
           marginTop: insets.top + 10,

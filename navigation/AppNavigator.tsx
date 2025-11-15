@@ -14,7 +14,7 @@ const Tab = createBottomTabNavigator();
 export default function AppNavigator() {
     const colorScheme = useColorScheme();
     const getIcon = (iconLight: any, iconDark: any) => {
-        return colorScheme === "dark" ? iconDark : iconLight;
+        return colorScheme === "dark" ? iconDark : iconDark;
     }
       const navigationTheme =
     colorScheme === "dark"

@@ -174,7 +174,7 @@ export const lightTheme = StyleSheet.create({
   container: {
     paddingVertical: 16,
     paddingHorizontal: 10,
-    backgroundColor: "#115c6f5b",
+    backgroundColor: "transparent",
     borderWidth: 1,
     borderColor: "#59CECFA4",
     borderRadius: 20,
@@ -337,7 +337,8 @@ export const darkTheme = StyleSheet.create({
   container: {
     paddingVertical: 16,
     paddingHorizontal: 10,
-    backgroundColor: "#115c6f5b",
+    // backgroundColor: "#115c6f5b",
+    backgroundColor: "transparent",
     borderWidth: 1,
     borderColor: "#59CECFA4",
     borderRadius: 20,
