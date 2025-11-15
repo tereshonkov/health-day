@@ -4,7 +4,6 @@ import { darkTheme, lightTheme } from "../../styles/theme";
 import React from "react";
 
 const screenWidth = Dimensions.get("window").width;
-const data = [150, 125, 130, 128, 122, 126, 124];
 
 export default function LineChartTable({data}: {data: number[]}) {
   const colorScheme = useColorScheme();
