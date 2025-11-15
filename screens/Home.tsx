@@ -65,7 +65,7 @@ export default function Home() {
   const insets = useSafeAreaInsets();
   const [loading, setLoading] = useState(false);
   const [correctPulse, setCorrectPulse] = useState<number>(0);
-  const [dataPressable, setDataPressable] = useState<number[]>();
+  const [dataPressable, setDataPressable] = useState<number[]>([0,0,0,0,0,0,0]);
 
   useEffect(() => {
     const getPulse = async () => {
@@ -126,9 +126,6 @@ export default function Home() {
     }, 50);
     setLoading(false);
   };
-  if (dataPressable === undefined) {
-    return null;
-  }
 
   return (
     <SafeAreaView>
