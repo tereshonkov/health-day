@@ -7,16 +7,36 @@ import {
   View,
 } from "react-native";
 import Button from "../components/Button/Button";
-import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
+import {
+  SafeAreaView,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
 import { darkTheme, lightTheme } from "../styles/theme";
 import CalendarComponent from "../components/Сalendar/Calendar";
 import { useRef } from "react";
+import useDayPress from "../hooks/useDayPress";
+import { downloadPressurePdf } from "../api/pressure";
+import { useState } from "react";
 
 export default function List() {
   const colorScheme = useColorScheme();
   const theme = colorScheme === "dark" ? darkTheme : lightTheme;
   const insets = useSafeAreaInsets();
   const scrollRef = useRef<ScrollView>(null);
+
+  const { selectedDates, markedDates, handleDayPress } = useDayPress({ theme });
+
+  const onSubmit = () => {
+    console.log("====================================");
+    console.log(selectedDates);
+    console.log("====================================");
+    const data = {
+      userId: "b38bc783-4398-4489-b172-692450ceef51",
+      date: selectedDates,
+    };
+    console.log("Sending dates to backend:", data.date);
+    downloadPressurePdf(data);
+  };
   return (
     <SafeAreaView>
       <ScrollView
@@ -40,8 +60,8 @@ export default function List() {
           <View style={{ gap: 16, alignItems: "center" }}>
             <Text style={[theme.primary, theme.textXl]}>Генеруй PDF</Text>
           </View>
-          <CalendarComponent />
-          <Button onPress={() => {}}>Завантажити</Button>
+          <CalendarComponent markedDates={markedDates} handleDayPress={handleDayPress}/>
+          <Button onPress={onSubmit}>Завантажити</Button>
           <View style={theme.container}>
             <Text
               style={[theme.primary, theme.textSm, { textAlign: "center" }]}

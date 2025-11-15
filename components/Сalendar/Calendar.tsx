@@ -13,11 +13,10 @@ type MarkedDatesType = {
   };
 };
 
-export default function CalendarComponent() {
+export default function CalendarComponent({ markedDates, handleDayPress }: { markedDates?: MarkedDatesType; handleDayPress?: (day: any) => void }) {
   const colorScheme = useColorScheme();
   const theme = colorScheme === "dark" ? darkTheme : lightTheme;
-  const { markedDates, handleDayPress, selectedDates } = useDayPress({ theme });
-  console.log(selectedDates);
+  // const { markedDates, handleDayPress, selectedDates } = useDayPress({ theme });
   
   return (
     <Calendar

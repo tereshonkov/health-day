@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
 type MarkedDatesType = {
   [date: string]: {
@@ -12,7 +12,7 @@ type MarkedDatesType = {
 export default function useDayPress({ theme }: { theme: any }) {
   const [range, setRange] = useState({ startDate: "", endDate: "" });
   const [markedDates, setMarkedDates] = useState<MarkedDatesType>({});
-  const selectedDates = Object.keys(markedDates);
+  const selectedDates = useMemo(() => Object.keys(markedDates), [markedDates]);
 
     const handleDayPress = (day: any) => {
     const { dateString } = day;
