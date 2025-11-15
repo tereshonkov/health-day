@@ -5,7 +5,7 @@ import * as Sharing from "expo-sharing";
 import { Buffer } from "buffer";
 
 // const API_URL = "http://192.168.0.152:3000";
-const API_URL = "https://project-n7j0.onrender.com/";
+const API_URL = "https://project-n7j0.onrender.com";
 
 type PressureData = {
   userId: string;

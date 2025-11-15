@@ -23,7 +23,7 @@ export default function useDayPress({ theme }: { theme: any }) {
         [dateString]: {
           startingDay: true,
           endingDay: true,
-          color: theme.secondary.color,
+          color: theme.primary.color,
           textColor: "#ffffff",
         },
       });
